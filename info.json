@@ -1,17 +1,18 @@
 {
-  "name": "[internal-mod-name]",
+  "name": "planet-arrakis",
   "version": "0.0.0",
-  "title": "[MOD DISPLAY NAME]",
-  "author": "[YOUR MODS.FACTORIO.COM USERNAME]",
-  "homepage": "[HOMEPAGE/REPO URL]",
-  "description": "[SHORT DESCRIPTION]",
+  "title": "Planet Arrakis",
+  "author": "Gladon",
+  "homepage": "https://github.com/Gladon4/planet-arrakis",
+  "description": "Adding one of the legendary planets in fiction: Arrakis aka. Dune!",
   "factorio_version": "2.0",
   "dependencies": [
-    "base"
+    "base",
+    "space-age"
   ],
   "quality_required": false,
   "rail_bridges_required": false,
-  "space_travel_required": false,
+  "space_travel_required": true,
   "spoiling_required": false,
   "freezing_required": false,
   "segmented_units_required": false,

@@ -1,0 +1,5 @@
+require("prototypes.autoplace-controls")
+require("prototypes.planet.planet")
+require("prototypes.technology")
+require("prototypes.item")
+require("prototypes.entity.resources")
