@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.0
+Version: 0.0.1
 Date: 2024-12-06
   Features:
     - Alpha Versions off Planet Arrakis and Spice
