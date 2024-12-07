@@ -42,13 +42,13 @@ data:extend(
                 order = "a",
                 base_density = 10,
                 -- base_spots_per_km = 1,
-                has_starting_area_placement = true,
-                regular_rq_factor_multiplier = 1.1,
-                starting_rq_factor_multiplier = 1.5,
-                candidate_spot_count = 22,
+                has_starting_area_placement = false,
+                regular_rq_factor_multiplier = 0,
+                starting_rq_factor_multiplier = 0,
+                candidate_spot_count = 0,
                 -- tile_restriction = autoplace_parameters.tile_restriction
             },
-            map_color = {0.0, 0.0, 0.8},
+            map_color = {0.2, 0.2, 0.8},
         }
     }
 )

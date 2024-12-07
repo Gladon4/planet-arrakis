@@ -1,4 +1,5 @@
 require("prototypes.autoplace-controls")
+require("prototypes.tile.tile-arrakis")
 require("prototypes.planet.planet")
 require("prototypes.technology")
 require("prototypes.item")

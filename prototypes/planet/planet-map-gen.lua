@@ -10,8 +10,15 @@ planet_map_gen.arrakis = function ()
             moisture = 0,
             cliffiness = 0,
             cliff_elevation = 0,
-            -- ["entity:spice-ore:probability"] = "arrakis_spice_ore_probability",
-            -- ["entity:spice-ore:richness"] = "arrakis_spice_ore_richness"
+            -- ["entity:spice-ore:probability"] = "0",
+            -- ["entity:spice-ore:richness"] = "0"
+        },
+        territory_settings =
+        {
+          units = {"small-demolisher", "medium-demolisher", "big-demolisher"},
+          territory_index_expression = "demolisher_territory_expression",
+          territory_variation_expression = "demolisher_variation_expression",
+          minimum_territory_size = 10
         },
         autoplace_controls =
         {
@@ -23,17 +30,16 @@ planet_map_gen.arrakis = function ()
             {
                 settings =
                 {
-                    ["sand-1"] = {},
-                    ["sand-2"] = {},
-                    ["sand-3"] = {},
+                    ["arrakis-sand"] = {},
+                    ["arrakis-rock"] = {},
                 }
             },
             ["decorative"] =
             {
                 settings =
                 {
-                    ["medium-sand-rock"] = {},
-                    ["small-sand-rock"] = {}
+                    -- ["medium-sand-rock"] = {},
+                    -- ["small-sand-rock"] = {}
                 }
             },
             ["entity"] =
