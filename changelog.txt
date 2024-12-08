@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 2024-12-08
+  Features:
+    - Demolishers as Sandworm standins have territories in the sand and spawn spice
+    - Worms spawn spice ore and Sand and Rock tiles
+  Locale:
+    - Lacale additions
+  Changes:
+    - Some more changes
+---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 2024-12-07
   Features:
