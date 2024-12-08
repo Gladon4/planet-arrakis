@@ -16,7 +16,7 @@ planet_map_gen.arrakis = function ()
         territory_settings =
         {
           units = {"small-demolisher", "medium-demolisher", "big-demolisher"},
-          territory_index_expression = "demolisher_territory_expression",
+          territory_index_expression = "sandworm_territory_expression",
           territory_variation_expression = "demolisher_variation_expression",
           minimum_territory_size = 10
         },

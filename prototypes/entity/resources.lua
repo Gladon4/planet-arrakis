@@ -48,7 +48,7 @@ data:extend(
                 candidate_spot_count = 0,
                 -- tile_restriction = autoplace_parameters.tile_restriction
             },
-            map_color = {0.2, 0.2, 0.8},
+            map_color = {0.2, 0.5, 0.8},
         }
     }
 )

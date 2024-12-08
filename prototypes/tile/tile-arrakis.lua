@@ -68,22 +68,18 @@ data:extend(
         {
             type = "noise-expression",
             name = "sand_rock_cutoff",
-            expression = "1"
-        },
-        {
-            type = "noise-expression",
-            name = "worm_territory_size",
-            expression = "100"
+            expression = "0.3"
         },
         {
             type = "noise-expression",
             name = "arrakis_desert_noise",
-            expression = "multioctave_noise{x = x + 1000 * worm_territory_size,\z
-                                            y = y + 1000 * worm_territory_size,\z
+            expression = "multioctave_noise{x = x,\z
+                                            y = y,\z
                                             persistence = 0.5,\z
                                             seed0 = map_seed,\z
                                             seed1 = 0,\z
-                                            octaves = 5} - sand_rock_cutoff"
+                                            octaves = 5,\z
+                                            input_scale = 0.05} - sand_rock_cutoff"
         },
         {
           type = "tile",
@@ -108,7 +104,7 @@ data:extend(
       
           -- transitions_between_transitions = lava_stone_transitions_between_transitions,
           -- walking_sound = data.raw.tile["dirt-1"].walking_sound,
-          map_color = {100,0,0}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
+          map_color = {220,140,50}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
           walking_speed_modifier = .6,
           vehicle_friction_modifier = 1,
           -- pollution_absorption_per_second = tile_pollution.lava
@@ -123,7 +119,7 @@ data:extend(
             {
               probability_expression = "~arrakis_desert_noise"
             },
-            layer = 1,
+            layer = 4,
             -- sprite_usage_surface = "arrakis",
             variants = tile_variations_template(
                 "__base__/graphics/terrain/dirt-1.png", "__base__/graphics/terrain/masks/transition-1.png",
@@ -138,7 +134,7 @@ data:extend(
         
             -- transitions_between_transitions = lava_stone_transitions_between_transitions,
             -- walking_sound = data.raw.tile["dirt-1"].walking_sound,
-            map_color = {0,100,0}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
+            map_color = {115,80,50}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
             walking_speed_modifier = .6,
             vehicle_friction_modifier = 1,
             -- pollution_absorption_per_second = tile_pollution.lava
