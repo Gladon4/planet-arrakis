@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.0
+Date: 2024-12-09
+  Features:
+    - Deep Desert, where the worms now live. You can only build on rocks
+    - Noise Pollution now exists
+    - Spice slowly disappears
+  Changes:
+    - Space conncetion icon changed to resemble others
+---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 2024-12-08
   Features:
