@@ -10,6 +10,7 @@ local ORE_NAME = "spice-ore"     -- Name of the ore to spawn
 local ORE_AMOUNT = 250          -- Amount of ore to spawn per tile
 local SPAWN_RADIUS = 5          -- Radius around the enemy to spawn ores
 local NOISE_FACTOR = 3
+local REDUCTION_RATE = 1
 
 -- Helper function to spawn ores around a position
 local function spawn_or_refresh_ores(surface, position)
@@ -63,6 +64,17 @@ script.on_event(defines.events.on_tick, function(event)
             for _, unit in pairs(surface.find_entities_filtered{type = "segmented-unit"}) do
                 if has_value(TARGET_UNITS, unit.name) then
                     spawn_or_refresh_ores(surface, unit.position)
+                end
+            end
+            
+            local ores = surface.find_entities_filtered{name = ORE_NAME}
+            for _, ore in pairs(ores) do
+                if ore.valid and ore.amount > 0 then
+                    if ore.amount <= REDUCTION_RATE then
+                        ore.destroy()
+                    else
+                        ore.amount = ore.amount - REDUCTION_RATE
+                    end
                 end
             end
         end
