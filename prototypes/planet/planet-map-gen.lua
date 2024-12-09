@@ -30,6 +30,7 @@ planet_map_gen.arrakis = function ()
             {
                 settings =
                 {
+                    ["arrakis-deep-desert-sand"] = {},
                     ["arrakis-sand"] = {},
                     ["arrakis-rock"] = {},
                 }

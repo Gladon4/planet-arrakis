@@ -1,112 +1,150 @@
 local tile_collision_masks = require("__base__/prototypes/tile/tile-collision-masks")
 
-function tile_variations_template(high_res_picture, high_res_transition_mask, options)
-    local function main_variation(size_)
-      local y_ = ((size_ == 1) and 0) or ((size_ == 2) and 128) or ((size_ == 4) and 320) or 640
-      local ret =
-      {
-        picture = high_res_picture,
-        count = (options[size_] and options[size_].weights) and #options[size_].weights or 16,
-        size = size_,
-        y = y_,
-        line_length = (size_ == 8) and 8 or 16,
-        scale = 0.5
-      }
-  
-      if options[size_] then
-        for k, v in pairs(options[size_]) do
-          ret[k] = v
-        end
-      end
-  
-      return ret
-    end
-  
-    local result =
+tile_collision_masks.desert_sand = function()
+  return
+  {layers={  -- copy of oily shallow ocean allow only player, vehicles, and elevated rail pillars. No other structures, rail, belts, etc.
+    ground_tile=true,
+    water_tile=true,
+    -- resource=true
+  }}
+end
+
+tile_collision_masks.deep_desert_sand = function()
+  return
+  {layers={
+    ground_tile=true,
+    water_tile=true,
+    -- resource=true,
+    -- rail_support=true
+  }}
+end
+
+
+local function transition_masks()
+  return {
+    mask_spritesheet = "__base__/graphics/terrain/masks/transition-1.png",
+    mask_layout =
     {
-      main =
+      scale = 0.5,
+      inner_corner =
       {
-        main_variation(1),
-        main_variation(2),
-        main_variation(4)
+        count = 8,
+      },
+      outer_corner =
+      {
+        count = 8,
+        x = 64*9
+      },
+      side =
+      {
+        count = 8,
+        x = 64*9*2
+      },
+      u_transition =
+      {
+        count = 1,
+        x = 64*9*3
+      },
+      o_transition =
+      {
+        count = 1,
+        x = 64*9*4
       }
     }
-  
-    if (options.max_size == 8) then
-      table.insert(result.main, main_variation(8))
-    end
-  
-    if options.empty_transitions then
-      result.empty_transitions = true
-    else
-      result.transition =
-      {
-        spritesheet = high_res_transition_mask,
-        layout =
-        {
-          scale = 0.5,
-          count = (options and options.mask_variations) or 8,
-          double_side_count = 0,
-          u_transition_count = 1,
-          o_transition_count = 1,
-          u_transition_line_length = 1,
-          o_transition_line_length = 2,
-          outer_corner_x = 576,
-          side_x = 1152,
-          u_transition_x = 1728,
-          o_transition_x = 2304,
-          mask = { y_offset = 0 }
-        }
-      }
-    end
-    return result
-  
-  end
+  }
+end
 
 data:extend(
     {
         {
             type = "noise-expression",
-            name = "sand_rock_cutoff",
-            expression = "0.3"
+            name = "deep_desert_to_sand_threshold",
+            expression = "0.1"
+        },
+        {
+            type = "noise-expression",
+            name = "sand_to_rock_threshold",
+            expression = "0.4"
         },
         {
             type = "noise-expression",
             name = "arrakis_desert_noise",
             expression = "multioctave_noise{x = x,\z
                                             y = y,\z
-                                            persistence = 0.5,\z
+                                            persistence = 0.7,\z
                                             seed0 = map_seed,\z
                                             seed1 = 0,\z
-                                            octaves = 5,\z
-                                            input_scale = 0.05} - sand_rock_cutoff"
+                                            octaves = 8,\z
+                                            input_scale = 0.03}"
+        },
+        {
+          type = "tile",
+          name = "arrakis-deep-desert-sand",
+          -- subgroup = "vulcanus-tiles",
+          -- order = "a-c",
+          collision_mask = tile_collision_masks.deep_desert_sand(),
+          autoplace =
+          {
+            probability_expression = "arrakis_desert_noise <= deep_desert_to_sand_threshold"
+          },
+          layer = 1,
+          layer_group = "ground-natural",
+          -- sprite_usage_surface = "arrakis",
+          variants =
+          {
+            transition = transition_masks(),
+            material_background =
+            {
+              picture = "__planet-arrakis__/graphics/terrain/arrakis-deep-desert-sand.png",
+              line_length = 4,
+              count = 16,
+              scale = 0.5
+            },
+            material_texture_width_in_tiles = 10,
+            material_texture_height_in_tiles = 7
+          },
+          default_cover_tile = "foundation",
+          -- transitions_between_transitions = lava_stone_transitions_between_transitions,
+          -- walking_sound = data.raw.tile["dirt-1"].walking_sound,
+          -- map_color = {220,140,50}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
+          map_color = {113,77,54},
+          walking_speed_modifier = .6,
+          vehicle_friction_modifier = 4,
+          -- pollution_absorption_per_second = tile_pollution.lava
         },
         {
           type = "tile",
           name = "arrakis-sand",
           -- subgroup = "vulcanus-tiles",
           -- order = "a-c",
-          collision_mask = tile_collision_masks.ground(),
+          collision_mask = tile_collision_masks.desert_sand(),
           autoplace =
           {
-            probability_expression = "arrakis_desert_noise"
+            probability_expression = "(arrakis_desert_noise > deep_desert_to_sand_threshold) & (arrakis_desert_noise <= sand_to_rock_threshold)"
           },
-          layer = 1,
+          layer = 2,
+          layer_group = "ground-natural",
           -- sprite_usage_surface = "arrakis",
-          variants = tile_variations_template("__base__/graphics/terrain/sand-1.png", "__base__/graphics/terrain/masks/transition-4.png",
-                {
-                    max_size = 8,
-                    [2] = { probability = 0.39, weights = {0.025, 0.010, 0.013, 0.025, 0.025, 0.100, 0.100, 0.005, 0.010, 0.010, 0.005, 0.005, 0.001, 0.015, 0.020, 0.020} },
-                    [4] = { probability = 0.20, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} },
-                    [8] = { probability = 0.10, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
-                }
-            ),
-      
+          variants =
+          {
+            transition = transition_masks(),
+            material_background =
+            {
+              picture = "__planet-arrakis__/graphics/terrain/arrakis-sand.png",
+              line_length = 4,
+              count = 16,
+              scale = 0.5
+            },
+            material_texture_width_in_tiles = 10,
+            material_texture_height_in_tiles = 7
+          },
+          default_cover_tile = "foundation",
           -- transitions_between_transitions = lava_stone_transitions_between_transitions,
           -- walking_sound = data.raw.tile["dirt-1"].walking_sound,
-          map_color = {220,140,50}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
-          walking_speed_modifier = .6,
-          vehicle_friction_modifier = 1,
+          -- map_color = {220,140,50}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
+          map_color = {111,74,52},
+          walking_speed_modifier = .8,
+          vehicle_friction_modifier = 2,
           -- pollution_absorption_per_second = tile_pollution.lava
         },
         {
@@ -117,25 +155,30 @@ data:extend(
             collision_mask = tile_collision_masks.ground(),
             autoplace =
             {
-              probability_expression = "~arrakis_desert_noise"
+              probability_expression = "arrakis_desert_noise > sand_to_rock_threshold"
             },
-            layer = 4,
+            layer = 3,
             -- sprite_usage_surface = "arrakis",
-            variants = tile_variations_template(
-                "__base__/graphics/terrain/dirt-1.png", "__base__/graphics/terrain/masks/transition-1.png",
-                {
-                    max_size = 4,
-                    [1] = { weights = {0.085, 0.085, 0.085, 0.085, 0.087, 0.085, 0.065, 0.085, 0.045, 0.045, 0.045, 0.045, 0.005, 0.025, 0.045, 0.045 } },
-                    [2] = { probability = 1, weights = {0.070, 0.070, 0.025, 0.070, 0.070, 0.070, 0.007, 0.025, 0.070, 0.050, 0.015, 0.026, 0.030, 0.005, 0.070, 0.027 } },
-                    [4] = { probability = 1.00, weights = {0.070, 0.070, 0.070, 0.070, 0.070, 0.070, 0.015, 0.070, 0.070, 0.070, 0.015, 0.050, 0.070, 0.070, 0.065, 0.070 }, },
-                    --[8] = { probability = 1.00, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
-                }
-                ),
+            variants =
+            {
+              transition = transition_masks(),
+              material_background =
+              {
+                picture = "__planet-arrakis__/graphics/terrain/arrakis-rock.png",
+                line_length = 8,
+                count = 16,
+                scale = 0.5
+              },
+              material_texture_width_in_tiles = 8,
+              material_texture_height_in_tiles = 8
+            },
         
             -- transitions_between_transitions = lava_stone_transitions_between_transitions,
             -- walking_sound = data.raw.tile["dirt-1"].walking_sound,
-            map_color = {115,80,50}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
-            walking_speed_modifier = .6,
+            -- map_color = {115,80,50}, -- changed from (32 32 32) to satisfy TerrainColorsVersusResourceColors test
+            -- map_color={131, 85, 66},
+            map_color = {114,78,56},
+            -- walking_speed_modifier = .6,
             vehicle_friction_modifier = 1,
             -- pollution_absorption_per_second = tile_pollution.lava
           },

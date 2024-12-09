@@ -3,12 +3,7 @@ data:extend(
         {
             type = "noise-expression",
             name = "worm_territory_size",
-            expression = "500"
-        },
-        {
-            type = "noise-expression",
-            name = "rock_subtract",
-            expression = "(arrakis_desert_noise < -0.7)"
+            expression = "750"
         },
         {
             type = "noise-expression",
@@ -24,7 +19,7 @@ data:extend(
         {
             type = "noise-expression",
             name = "sandworm_territory_expression",
-            expression = "if{condition=arrakis_desert_noise+0.3, true_branch=base_sandworm_territories, false_branch=-1}"
+            expression = "if{condition=arrakis_desert_noise <= deep_desert_to_sand_threshold, true_branch=base_sandworm_territories, false_branch=-1}"
         }
     }
 )

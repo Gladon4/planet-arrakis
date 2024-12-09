@@ -1,4 +1,11 @@
-local TARGET_UNIT_TYPE = "small-demolisher" -- Change this to the type of enemy you want
+require("prototypes.function")
+
+local TARGET_UNITS = {
+    "small-demolisher",
+    "medium-demolisher",
+    "large-demolisher",
+}
+
 local ORE_NAME = "spice-ore"     -- Name of the ore to spawn
 local ORE_AMOUNT = 250          -- Amount of ore to spawn per tile
 local SPAWN_RADIUS = 5          -- Radius around the enemy to spawn ores
@@ -54,7 +61,7 @@ script.on_event(defines.events.on_tick, function(event)
         if game.surfaces["arrakis"] then
             local surface = game.surfaces["arrakis"] -- Default surface
             for _, unit in pairs(surface.find_entities_filtered{type = "segmented-unit"}) do
-                if unit.name == TARGET_UNIT_TYPE then
+                if has_value(TARGET_UNITS, unit.name) then
                     spawn_or_refresh_ores(surface, unit.position)
                 end
             end
