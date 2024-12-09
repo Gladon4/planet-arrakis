@@ -36,24 +36,12 @@ data:extend(
         {
             type = "space-connection",
             name = "nauvis-arrakis",
-            icons = {
-                {
-                    icon = "__base__/graphics/icons/nauvis.png",
-                    scale = 0.5,
-                    shift = {-32, -32}
-                },
-                {
-                    icon = "__planet-arrakis__/graphics/icons/arrakis.png",
-                    scale = 0.5,
-                    shift = {32, 32}
-                },
-            },
             subgroup = "planet-connections",
             from = "nauvis",
             to = "arrakis",
             order = "a",
             length = 15000,
-            -- asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus)
+            asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus)
         },
     }
 )

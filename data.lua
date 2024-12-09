@@ -1,0 +1,6 @@
+require("prototypes.autoplace-controls")
+require("prototypes.tile.tiles")
+require("prototypes.planet.planet")
+require("prototypes.technology")
+require("prototypes.item")
+require("prototypes.entity.resources")
