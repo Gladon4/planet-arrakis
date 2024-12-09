@@ -54,14 +54,34 @@ local function spawn_or_refresh_ores(surface, position)
     end
 end
 
+local function find_high_pollution_position(surface, position, radius)
+    local highest_pollution = 0
+    local target_position = nil
 
+    for x = -radius, radius, 32 do
+        for y = -radius, radius, 32 do
+            local check_position = {x = position.x + x, y = position.y + y}
+            local pollution = surface.get_pollution(check_position)
 
--- Event handler to iterate through enemies and spawn ores
+            if pollution > highest_pollution then
+                highest_pollution = pollution
+                target_position = check_position
+            end
+        end
+    end
+
+    if target_position then
+        log("polution pos: " .. target_position.x .. ", " .. target_position.y)
+    end
+    return target_position
+end
+
 script.on_event(defines.events.on_tick, function(event)
-    if event.tick % 600 == 0 then -- Run the code every 600 ticks (10 seconds)
+    if event.tick % 300 == 0 then -- Run the code every 600 ticks (10 seconds)
         if game.surfaces["arrakis"] then
             local surface = game.surfaces["arrakis"] -- Default surface
-            for _, unit in pairs(surface.find_entities_filtered{type = "segmented-unit"}) do
+            local worms = surface.find_entities_filtered{type = "segmented-unit"}
+            for _, unit in pairs(worms) do
                 if has_value(TARGET_UNITS, unit.name) then
                     spawn_or_refresh_ores(surface, unit.position)
                 end
@@ -77,6 +97,28 @@ script.on_event(defines.events.on_tick, function(event)
                     end
                 end
             end
+
+            -- for _, unit in pairs(worms) do
+            --     if unit.valid then
+            --         log(unit.name)
+            --         if (unit.commandable) then
+            --             log("commandable")
+            --         else
+            --             log ("not")
+            --         end
+            --         local pollution_target = find_high_pollution_position(surface, unit.position, 1000)
+            --         if pollution_target then
+            --             -- Direct the unit toward the target position
+            --             -- unit.set_command({
+            --             --     type = defines.command.go_to_location,
+            --             --     destination = pollution_target,
+            --             --     radius = 2,
+            --             --     distraction = defines.distraction.by_anything
+            --             -- })
+            --         end
+            --     end
+            -- end
+
         end
     end
 end)
