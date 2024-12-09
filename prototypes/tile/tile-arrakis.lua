@@ -1,4 +1,6 @@
 local tile_collision_masks = require("__base__/prototypes/tile/tile-collision-masks")
+local tile_pollution = require("__planet-arrakis__/prototypes/tile/tile-pollution-values")
+
 
 tile_collision_masks.desert_sand = function()
   return
@@ -110,7 +112,7 @@ data:extend(
           map_color = {113,77,54},
           walking_speed_modifier = .6,
           vehicle_friction_modifier = 4,
-          -- pollution_absorption_per_second = tile_pollution.lava
+          absorptions_per_second = tile_pollution.deep_desert_sand
         },
         {
           type = "tile",
@@ -145,7 +147,7 @@ data:extend(
           map_color = {111,74,52},
           walking_speed_modifier = .8,
           vehicle_friction_modifier = 2,
-          -- pollution_absorption_per_second = tile_pollution.lava
+          absorptions_per_second = tile_pollution.desert_sand
         },
         {
             type = "tile",
@@ -180,7 +182,7 @@ data:extend(
             map_color = {114,78,56},
             -- walking_speed_modifier = .6,
             vehicle_friction_modifier = 1,
-            -- pollution_absorption_per_second = tile_pollution.lava
+            absorptions_per_second = tile_pollution.desert_rock
           },
     }
 )
