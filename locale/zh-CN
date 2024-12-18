@@ -1,0 +1,25 @@
+[mod-name]
+planet-arrakis=沙丘星 [Planet Arrakis]
+
+[mod-description]
+planet-arrakis=添加虚构作品中最具传奇色彩的行星之一：沙丘星，又名沙丘！汉化：开源汉化：plexpt
+
+[space-location-name]
+arrakis=沙丘星
+
+[item-name]
+spice=美琅脂
+
+[entity-name]
+spice-ore=美琅脂矿床
+
+[technology-name]
+planet-discovery-arrakis=沙丘星发现
+
+[tile-name]
+arrakis-deep-desert-sand=沙丘深层沙漠沙
+arrakis-sand=沙丘沙漠沙
+arrakis-rock=沙丘沙漠岩石
+
+[airborne-pollutant-name]
+noise=噪音污染
