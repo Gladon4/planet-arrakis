@@ -1,8 +1,10 @@
 require("prototypes.function")
 
 
+local WORM = "sandworm-giant"
+
 local function already_attacked(surface, position, radius)
-    local worms = surface.find_entities_filtered{name="big-demolisher"}
+    local worms = surface.find_entities_filtered{name=WORM}
 
     if table_size(worms) == 0 then
         return false
@@ -20,6 +22,7 @@ end
 local POLLUTION_THRESHOLD = 12 -- Set your desired threshold
 local worm_brain = {}
 
+
 script.on_nth_tick(600, function() -- Check every 10 seconds (600 ticks) 
     if game.surfaces["arrakis"] then
         arrakis = game.surfaces["arrakis"] 
@@ -31,9 +34,9 @@ script.on_nth_tick(600, function() -- Check every 10 seconds (600 ticks)
             if pollution > POLLUTION_THRESHOLD then
                 if not already_attacked(arrakis, chunk_position, 200) then
                     arrakis.create_entity({
-                        name = "big-demolisher",
+                        name = WORM,
                         position = arrakis.find_non_colliding_position(
-                            "big-demolisher", chunk_position, 200, 1
+                            WORM, chunk_position, 200, 1
                         )
                     })
                 end
@@ -43,7 +46,7 @@ script.on_nth_tick(600, function() -- Check every 10 seconds (600 ticks)
             end
         end
 
-        local worms = arrakis.find_entities_filtered{name="big-demolisher"}
+        local worms = arrakis.find_entities_filtered{name=WORM}
         if table_size(worms) > 0 then
             for _, worm in pairs(worms) do
                 local position = {x = worm.position.x, y = worm.position.y}
