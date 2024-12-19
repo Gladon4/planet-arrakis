@@ -13,13 +13,13 @@ planet_map_gen.arrakis = function ()
             -- ["entity:spice-ore:probability"] = "0",
             -- ["entity:spice-ore:richness"] = "0"
         },
-        territory_settings =
-        {
-          units = {"small-demolisher", "medium-demolisher", "big-demolisher"},
-          territory_index_expression = "sandworm_territory_expression",
-          territory_variation_expression = "demolisher_variation_expression",
-          minimum_territory_size = 10
-        },
+        -- territory_settings =
+        -- {
+        --   units = {"small-demolisher", "medium-demolisher", "big-demolisher"},
+        --   territory_index_expression = "sandworm_territory_expression",
+        --   territory_variation_expression = "demolisher_variation_expression",
+        --   minimum_territory_size = 10
+        -- },
         autoplace_controls =
         {
             ["spice_ore"] = {},
