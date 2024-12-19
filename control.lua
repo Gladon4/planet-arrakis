@@ -1,7 +1,7 @@
 require("prototypes.function")
 
 
-local WORM = "sandworm-giant"
+local WORM = "big-sandworm"
 
 local function already_attacked(surface, position, radius)
     local worms = surface.find_entities_filtered{name=WORM}
@@ -19,11 +19,11 @@ local function already_attacked(surface, position, radius)
     return false
 end 
 
-local POLLUTION_THRESHOLD = 12 -- Set your desired threshold
+local POLLUTION_THRESHOLD = 15 -- Set your desired threshold
 local worm_brain = {}
 
 
-script.on_nth_tick(600, function() -- Check every 10 seconds (600 ticks) 
+script.on_nth_tick(1200, function() 
     if game.surfaces["arrakis"] then
         arrakis = game.surfaces["arrakis"] 
         for chunk in arrakis.get_chunks() do
