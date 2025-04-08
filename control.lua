@@ -157,3 +157,121 @@ script.on_event(defines.events.on_tick, function(event)
     
 end)
 
+
+script.on_event(defines.events.on_built_entity, function(event)
+    local entity = event.created_entity or event.entity
+    if not (entity and entity.valid) then return end
+
+    -- Only target electric mining drills
+    if entity.name ~= "stationary-spice-harvester" then return end
+
+    -- Get the mining drill's output position
+    local drill = entity
+    local output_position = drill.position
+    local direction = drill.direction
+
+    -- Calculate output position based on direction
+    local offset = {
+        [defines.direction.north] = {x = 0, y = -3},
+        [defines.direction.east]  = {x = 2, y = 0},
+        [defines.direction.south] = {x = 0, y = 2},
+        [defines.direction.west]  = {x = -3, y = 0}
+    }
+
+    local delta = offset[direction] or {x = 0, y = 1}  -- default to south
+    local chest_position = {
+        x = output_position.x + delta.x,
+        y = output_position.y + delta.y
+    }
+
+    -- Check if the tile is already occupied
+    local surface = drill.surface
+
+    -- Place a steel chest at the output position
+    surface.create_entity({
+        name = "steel-chest",
+        position = chest_position,
+        force = drill.force,
+        create_build_effect_smoke = true
+    })
+end)
+
+script.on_event(defines.events.on_built_entity, function(event)
+    local entity = event.entity
+    if not (entity and entity.valid) then return end
+
+    -- Only target electric mining drills
+    if entity.name ~= "stationary-spice-harvester" then return end
+
+    -- Get the mining drill's output position
+    local drill = entity
+    local output_position = drill.position
+    local direction = drill.direction
+
+    -- Calculate output position based on direction
+    local offset = {
+        [defines.direction.north] = {x = 0, y = -3},
+        [defines.direction.east]  = {x = 2, y = 0},
+        [defines.direction.south] = {x = 0, y = 2},
+        [defines.direction.west]  = {x = -3, y = 0}
+    }
+
+    local delta = offset[direction] or {x = 0, y = 1}  -- default to south
+    local chest_position = {
+        x = output_position.x + delta.x,
+        y = output_position.y + delta.y
+    }
+
+    -- Check if the tile is already occupied
+    local surface = drill.surface
+    log(chest_position)
+
+    -- Place a steel chest at the output position
+    surface.create_entity({
+        name = "steel-chest",
+        position = chest_position,
+        force = drill.force,
+        create_build_effect_smoke = true
+    })
+end)
+
+
+script.on_event(defines.events.on_pre_player_mined_item, function(event)
+    local entity = event.entity
+    if not (entity and entity.valid) then return end
+
+    if entity.name ~= "stationary-spice-harvester" then return end
+
+    local offset = {
+        [defines.direction.north] = {x = 0, y = -2.5},
+        [defines.direction.east]  = {x = 2.5, y = 0},
+        [defines.direction.south] = {x = 0, y = 2.5},
+        [defines.direction.west]  = {x = -2.5, y = 0}
+    }
+    local delta = offset[entity.direction] or {x = 0, y = 1}
+    local chest_position = {
+        x = entity.position.x + delta.x,
+        y = entity.position.y + delta.y
+    }
+
+    local surface = entity.surface
+    local chest_pos = chest_position
+
+    local a = {x = entity.position.x -3,
+    y = entity.position.y - 3}
+
+    local b = {x = entity.position.x + 3,
+    y = entity.position.y + 3}
+
+    local entities = surface.find_entities_filtered{
+        position = chest_pos,
+        name = "steel-chest"
+    }
+
+    for _, chest in pairs(entities) do
+        if chest and chest.valid then
+            chest.destroy()
+        end
+    end
+
+end)
