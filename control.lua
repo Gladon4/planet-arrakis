@@ -19,7 +19,8 @@ local function already_attacked(surface, position, radius)
     return false
 end 
 
-local POLLUTION_THRESHOLD = 15 
+local POLLUTION_THRESHOLD = 10
+local ATTACK_DISTANCE = 200
 local worm_brain = {}
 
 
@@ -32,12 +33,28 @@ script.on_nth_tick(1200, function()
             
             if pollution > POLLUTION_THRESHOLD then
                 if not already_attacked(arrakis, chunk_position, 200) then
-                    arrakis.create_entity({
+                    -- direction from where the worm comes from
+                    local angle = math.random() * 2 * math.pi
+
+                    local spawn_position = {
+                        x = chunk_position.x + math.cos(angle) * ATTACK_DISTANCE,
+                        y = chunk_position.y + math.sin(angle) * ATTACK_DISTANCE
+                    }
+
+                    local new_worm = arrakis.create_entity({
                         name = WORM,
                         position = arrakis.find_non_colliding_position(
-                            WORM, chunk_position, 200, 1
-                        )
+                            WORM, spawn_position, 200, 1
+                        ),
+                        direction=nil,
+                        force="enemy"
                     })
+
+                    local dx = chunk_position.x - spawn_position.x
+                    local dy = chunk_position.y - spawn_position.y
+
+                    local orientation = (math.atan2(dy, dx) / (2 * math.pi)) % 1  -- Normalize to [0,1)
+                    new_worm.orientation = orientation
                 end
 
                 -- reset pollution
@@ -56,7 +73,7 @@ script.on_nth_tick(1200, function()
                     if worm_brain[uuid] then
                         worm_brain[uuid] = (worm_brain[uuid] + pollution) / 2
                     else
-                        worm_brain[uuid] = pollution
+                        worm_brain[uuid] = 300
                     end
                 end
 
@@ -260,6 +277,7 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
             position = chest_position,
             name = "steel-chest"
         }
+        log(chests)
 
         if player == nil then return end
 
@@ -271,7 +289,6 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
                 for i = 1, table_size(chest_inv) do
                     local stack = chest_inv[i]
                     if stack then
-                        log(stack.name)
                         -- Try to insert into player's inventory
                         local inserted = player.get_main_inventory().insert(stack)
                         player.create_local_flying_text{text={"", "+", stack.count, " ", {"item-name." .. stack.name}}, create_at_cursor=true}
