@@ -11,8 +11,8 @@ Sandworms (or Shai-Hulud) roam the planet and attack anything moving. But unlike
 
 [Roadmap/Goals](https://github.com/Gladon4/planet-arrakis/blob/main/ROADMAP.md)
 
-Translations:
-🇬🇧 (English)  Gladon
-🇩🇪 (German) Gladon
-🇷🇺 (Russian) [GafarovMaxim](https://github.com/GafarovMaxim)
-🇨🇳 (Chinese) [PlexPt](https://github.com/PlexPt)
+Translations:  
+🇬🇧 (English)  Gladon  
+🇩🇪 (German) Gladon  
+🇷🇺 (Russian) [GafarovMaxim](https://github.com/GafarovMaxim)  
+🇨🇳 (Chinese) [PlexPt](https://github.com/PlexPt)  
