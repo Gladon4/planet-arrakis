@@ -196,13 +196,13 @@ local stationary_spice_harvester = {
     corpse = "electric-mining-drill-remnants",
     dying_explosion = "electric-mining-drill-explosion",
     collision_box = {{-2.1, -2.85}, {2.1, 2.85}},
-    selection_box = {{-2.5, -2}, {2.5, 3}},
+    selection_box = {{-2.5, -3}, {2.5, 3}},
     resource_categories = {"basic-solid"},  -- You need to define this category
     mining_speed = 0.5,
     mining_power = 5,
     energy_source = {
         type = "void",
-        emissions_per_minute = { noise = 0 },
+        emissions_per_minute = { noise = 1 },
         usage_priority = "secondary-input"
     },
     energy_usage="1MW",

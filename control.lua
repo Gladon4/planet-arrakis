@@ -19,7 +19,7 @@ local function already_attacked(surface, position, radius)
     return false
 end 
 
-local POLLUTION_THRESHOLD = 15 -- Set your desired threshold
+local POLLUTION_THRESHOLD = 15 
 local worm_brain = {}
 
 
@@ -30,7 +30,6 @@ script.on_nth_tick(1200, function()
             local chunk_position = {x = chunk.x*32, y = chunk.y*32}
             local pollution = arrakis.get_pollution(chunk_position)
             
-            -- If pollution exceeds threshold, spawn the Demolisher
             if pollution > POLLUTION_THRESHOLD then
                 if not already_attacked(arrakis, chunk_position, 200) then
                     arrakis.create_entity({
@@ -240,38 +239,55 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
     local entity = event.entity
     if not (entity and entity.valid) then return end
 
-    if entity.name ~= "stationary-spice-harvester" then return end
+    if entity.name == "stationary-spice-harvester" then
+        local offset = {
+            [defines.direction.north] = {x = 0, y = -2.5},
+            [defines.direction.east]  = {x = 2.5, y = 0},
+            [defines.direction.south] = {x = 0, y = 2.5},
+            [defines.direction.west]  = {x = -2.5, y = 0}
+        }
+        local delta = offset[entity.direction] or {x = 0, y = 1}
+        local chest_position = {
+            x = entity.position.x + delta.x,
+            y = entity.position.y + delta.y
+        }
 
-    local offset = {
-        [defines.direction.north] = {x = 0, y = -2.5},
-        [defines.direction.east]  = {x = 2.5, y = 0},
-        [defines.direction.south] = {x = 0, y = 2.5},
-        [defines.direction.west]  = {x = -2.5, y = 0}
-    }
-    local delta = offset[entity.direction] or {x = 0, y = 1}
-    local chest_position = {
-        x = entity.position.x + delta.x,
-        y = entity.position.y + delta.y
-    }
+        local surface = entity.surface
 
-    local surface = entity.surface
-    local chest_pos = chest_position
+        local player = game.get_player(event.player_index)
 
-    local a = {x = entity.position.x -3,
-    y = entity.position.y - 3}
+        local chests = surface.find_entities_filtered{
+            position = chest_position,
+            name = "steel-chest"
+        }
 
-    local b = {x = entity.position.x + 3,
-    y = entity.position.y + 3}
+        if player == nil then return end
 
-    local entities = surface.find_entities_filtered{
-        position = chest_pos,
-        name = "steel-chest"
-    }
 
-    for _, chest in pairs(entities) do
-        if chest and chest.valid then
-            chest.destroy()
+        for _, chest in pairs(chests) do
+            if chest and chest.valid and chest.get_inventory(defines.inventory.chest) then
+                local chest_inv = chest.get_inventory(defines.inventory.chest).get_contents()
+
+                for i = 1, table_size(chest_inv) do
+                    local stack = chest_inv[i]
+                    if stack then
+                        log(stack.name)
+                        -- Try to insert into player's inventory
+                        local inserted = player.get_main_inventory().insert(stack)
+                        player.create_local_flying_text{text={"", "+", stack.count, " ", {"item-name." .. stack.name}}, create_at_cursor=true}
+                        if inserted < stack.count then
+                            -- Drop the rest on the ground
+                            surface.spill_item_stack(player.position, {name = stack.name, count = stack.count - inserted}, true)
+                        end
+                    end
+                end
+
+                chest.destroy()
+            end
         end
+
+    else
+        return 
     end
 
 end)
