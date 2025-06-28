@@ -211,7 +211,7 @@ local stationary_spice_harvester = {
     graphics_set =
     {
       drilling_vertical_movement_duration = 10 / electric_drill_animation_speed,
-      animation_progress = 1,
+      animation_progress = 3,
 
       status_colors = electric_mining_drill_status_colors(),
 

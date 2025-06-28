@@ -19,8 +19,8 @@ local function already_attacked(surface, position, radius)
     return false
 end 
 
-local POLLUTION_THRESHOLD = 10
-local ATTACK_DISTANCE = 200
+local POLLUTION_THRESHOLD = 15
+local ATTACK_DISTANCE = 90
 local worm_brain = {}
 
 
@@ -32,33 +32,30 @@ script.on_nth_tick(1200, function()
             local pollution = arrakis.get_pollution(chunk_position)
             
             if pollution > POLLUTION_THRESHOLD then
-                if not already_attacked(arrakis, chunk_position, 200) then
+                if not already_attacked(arrakis, chunk_position, 125) then
                     -- direction from where the worm comes from
                     local angle = math.random() * 2 * math.pi
-
+                    
                     local spawn_position = {
                         x = chunk_position.x + math.cos(angle) * ATTACK_DISTANCE,
                         y = chunk_position.y + math.sin(angle) * ATTACK_DISTANCE
                     }
+                    
+                    local directions = {defines.direction.west, defines.direction.north, defines.direction.east, defines.direction.south}
+                    local dir_index = math.floor((angle + math.pi / 4) / (math.pi / 2)) % 4 + 1
+
+                    log(angle)
+                    log(dir_index)
 
                     local new_worm = arrakis.create_entity({
                         name = WORM,
                         position = arrakis.find_non_colliding_position(
-                            WORM, spawn_position, 200, 1
+                            WORM, spawn_position, 50, 1
                         ),
-                        direction=nil,
+                        direction=directions[dir_index],
                         force="enemy"
                     })
-
-                    local dx = chunk_position.x - spawn_position.x
-                    local dy = chunk_position.y - spawn_position.y
-
-                    local orientation = (math.atan2(dy, dx) / (2 * math.pi)) % 1  -- Normalize to [0,1)
-                    new_worm.orientation = orientation
                 end
-
-                -- reset pollution
-                -- arrakis.pollute(chunk_position, -pollution)
             end
         end
 
@@ -240,7 +237,6 @@ script.on_event(defines.events.on_built_entity, function(event)
 
     -- Check if the tile is already occupied
     local surface = drill.surface
-    log(chest_position)
 
     -- Place a steel chest at the output position
     surface.create_entity({
@@ -277,7 +273,6 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
             position = chest_position,
             name = "steel-chest"
         }
-        log(chests)
 
         if player == nil then return end
 
