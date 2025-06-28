@@ -184,6 +184,14 @@ function electric_mining_drill_status_leds_working_visualisation()
   }
 end
 
+data:extend({
+  {
+    type = "resource-category",
+    name = "spice-mining"
+  }
+})
+
+
 
 local stationary_spice_harvester = {
     type = "mining-drill",
@@ -197,7 +205,7 @@ local stationary_spice_harvester = {
     dying_explosion = "electric-mining-drill-explosion",
     collision_box = {{-2.1, -2.85}, {2.1, 2.85}},
     selection_box = {{-2.5, -3}, {2.5, 3}},
-    resource_categories = {"basic-solid"},  -- You need to define this category
+    resource_categories = {"spice-mining"},  -- You need to define this category
     mining_speed = 0.5,
     mining_power = 5,
     energy_source = {

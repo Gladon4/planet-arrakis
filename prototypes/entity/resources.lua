@@ -16,7 +16,7 @@ data:extend(
                 mining_time = 1,
                 result = "spice"
             },
-            -- category = resource_parameters.category,
+            category = "spice-mining",
             -- subgroup = resource_parameters.subgroup,
             -- walking_sound = resource_parameters.walking_sound,
             -- collision_mask = resource_parameters.collision_mask,
