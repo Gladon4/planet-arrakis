@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.5.0
+Date: 2025-06-28
+  Features:
+    - Sandworms spawn in the distance when noise is produced
+    - Spice Blows
+    - stationary spice harvester recipe
+    - Stationary Spice Harvesters
+---------------------------------------------------------------------------------------------------
 Version: 0.4.1
 Date: 2025-02-27
   Changes:
