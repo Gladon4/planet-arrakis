@@ -637,4 +637,20 @@ local stationary_spice_harvester = {
     },
 }
 
+data:extend({
+    {
+    type = "recipe",
+    name = "stationary-spice-harvester",
+    category = "crafting",
+    enabled = false,  -- recipe is not available from the start
+    energy_required = 5,
+    ingredients = {
+      {type="item", name="electric-mining-drill", amount=1},
+      {type="item", name="processing-unit", amount=5},
+      {type="item", name="steel-plate", amount=10}
+    },
+    results = {{type = "item", name="stationary-spice-harvester", amount=1}}
+  }
+})
+
 data:extend({stationary_spice_harvester})

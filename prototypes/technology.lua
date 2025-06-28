@@ -12,6 +12,10 @@ data:extend(
                 type = "unlock-space-location",
                 space_location = "arrakis",
                 use_icon_overlay_constant = true
+              },
+              {
+                type = "unlock-recipe",
+                recipe = "stationary-spice-harvester"
               }
             },
             prerequisites = {"space-platform-thruster"},
