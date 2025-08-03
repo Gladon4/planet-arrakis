@@ -40,8 +40,13 @@ script.on_nth_tick(1200, function()
                         y = chunk_position.y + math.sin(angle) * ATTACK_DISTANCE
                     }
 
-                    local directions = { defines.direction.west, defines.direction.north, defines.direction.east, defines
-                        .direction.south }
+                    local directions = {
+                        defines.direction.west,
+                        defines.direction.north,
+                        defines.direction.east,
+                        defines.direction.south
+                    }
+
                     local dir_index = math.floor((angle + math.pi / 4) / (math.pi / 2)) % 4 + 1
 
                     log(angle)
