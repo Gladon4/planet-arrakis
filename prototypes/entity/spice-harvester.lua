@@ -199,7 +199,7 @@ local stationary_spice_harvester = {
     icon = "__base__/graphics/icons/electric-mining-drill.png",
     icon_size = 64,
     flags = {"placeable-neutral", "player-creation"},
-    minable = {mining_time = 1, result = "iron-plate"},
+    minable = {mining_time = 1, result = "stationary-spice-harvester"},
     max_health = 400,
     corpse = "electric-mining-drill-remnants",
     dying_explosion = "electric-mining-drill-explosion",
