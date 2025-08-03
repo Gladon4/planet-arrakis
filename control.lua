@@ -1,6 +1,10 @@
 require("prototypes.function")
 
 local WORM = "big-sandworm"
+local POLLUTION_THRESHOLD = 15
+local ATTACK_DISTANCE = 90
+local worm_brain = {}
+
 
 local function already_attacked(surface, position, radius)
     local worms = surface.find_entities_filtered { name = WORM }
@@ -17,10 +21,6 @@ local function already_attacked(surface, position, radius)
 
     return false
 end
-
-local POLLUTION_THRESHOLD = 15
-local ATTACK_DISTANCE = 90
-local worm_brain = {}
 
 
 script.on_nth_tick(1200, function()
@@ -40,7 +40,8 @@ script.on_nth_tick(1200, function()
                         y = chunk_position.y + math.sin(angle) * ATTACK_DISTANCE
                     }
 
-                    local directions = { defines.direction.west, defines.direction.north, defines.direction.east, defines.direction.south }
+                    local directions = { defines.direction.west, defines.direction.north, defines.direction.east, defines
+                        .direction.south }
                     local dir_index = math.floor((angle + math.pi / 4) / (math.pi / 2)) % 4 + 1
 
                     log(angle)
@@ -103,7 +104,12 @@ local function find_spice_blow_positions(surface, chance_per_chunk)
 
             for _, player in pairs(game.players) do
                 if player.surface == surface then
-                    player.add_custom_alert(blow_pos, { type = "item", name = "spice" }, { "", "Spice Blow immanent" }, true)
+                    player.add_custom_alert(
+                        blow_pos,
+                        { type = "item", name = "spice" },
+                        { "", "Spice Blow immanent" },
+                        true
+                    )
                 end
             end
 
@@ -265,21 +271,21 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
         local surface = entity.surface
 
         local player = game.get_player(event.player_index)
+        if not player then return end
+
+        local player_inv = player.get_main_inventory()
+        if not player_inv then return end
 
         local chests = surface.find_entities_filtered {
             position = chest_position,
             name = "steel-chest"
         }
 
-        if player == nil then return end
-
         for _, chest in pairs(chests) do
             if chest and chest.valid then
-                local inv = chest.get_inventory(defines.inventory.chest)
-                if inv and inv.valid then
-                    local contents = inv.get_contents()
-                    local player_inv = player.get_main_inventory()
-
+                local chest_inv = chest.get_inventory(defines.inventory.chest)
+                if chest_inv and chest_inv.valid then
+                    local contents = chest_inv.get_contents()
                     for _, content in pairs(contents) do
                         if content then
                             local inserted = player_inv.insert({
@@ -294,7 +300,14 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
                                 }
                             end
                             if type(inserted) == "number" and inserted < content.count then
-                                surface.spill_item_stack({ position = player.position, stack = { name = content.name, count = content.count - inserted, quality = content.quality } })
+                                surface.spill_item_stack({
+                                    position = player.position,
+                                    stack = {
+                                        name = content.name,
+                                        count = content.count - inserted,
+                                        quality = content.quality
+                                    }
+                                })
                             end
                         end
                     end
@@ -302,7 +315,5 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
                 chest.destroy()
             end
         end
-    else
-        return
     end
 end)
