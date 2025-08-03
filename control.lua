@@ -1,6 +1,5 @@
 require("prototypes.function")
 
-
 local WORM = "big-sandworm"
 
 local function already_attacked(surface, position, radius)
@@ -41,8 +40,7 @@ script.on_nth_tick(1200, function()
                         y = chunk_position.y + math.sin(angle) * ATTACK_DISTANCE
                     }
 
-                    local directions = { defines.direction.west, defines.direction.north, defines.direction.east, defines
-                        .direction.south }
+                    local directions = { defines.direction.west, defines.direction.north, defines.direction.east, defines.direction.south }
                     local dir_index = math.floor((angle + math.pi / 4) / (math.pi / 2)) % 4 + 1
 
                     log(angle)
@@ -105,8 +103,7 @@ local function find_spice_blow_positions(surface, chance_per_chunk)
 
             for _, player in pairs(game.players) do
                 if player.surface == surface then
-                    player.add_custom_alert(blow_pos, { type = "item", name = "spice" }, { "", "Spice Blow immanent" },
-                        true)
+                    player.add_custom_alert(blow_pos, { type = "item", name = "spice" }, { "", "Spice Blow immanent" }, true)
                 end
             end
 
@@ -297,7 +294,7 @@ script.on_event(defines.events.on_pre_player_mined_item, function(event)
                                 }
                             end
                             if type(inserted) == "number" and inserted < content.count then
-                                surface.spill_item_stack({ position = player.position, stack = { name = content.name, count = content.count - inserted } })
+                                surface.spill_item_stack({ position = player.position, stack = { name = content.name, count = content.count - inserted, quality = content.quality } })
                             end
                         end
                     end
