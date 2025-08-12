@@ -27,13 +27,10 @@ The holtzman effect is used to great effect in the universe of Dune. It allows f
 ### FTL Travel
 To travel faster than light you not only need to make use of the holtzman effect but also make sure you are not crashing into things. For this spice is used. Spice allows the navigators to expand their minds and calculate a safe path.
 
-### New Buildings / Structures / Item
+### New Buildings / Structures / Items
 To make use of all that Arrakis has to offer, there are going to be some new buildings, structures and items. Among those are:  
 - Moisture Farm
   - It collects small amounts of water from the air
-- Seismic detector
-  - To be able to harvest sand, you need to know where spice blows occour, luckily it generates seismic waves you can measure.
-  - Worms coming close to the surface also create seismic waves. So you get a warming of the worms.
 - Harvester
   - The harvester mines the spice from the sand
   - It can escape from worms
@@ -54,3 +51,8 @@ To make use of all that Arrakis has to offer, there are going to be some new bui
 
 ## Maybe Features
 These are features I might add, but they do not have priority.
+
+### Buildings / Structures / Items
+- Seismic detector
+  - To be able to harvest sand, you need to know where spice blows occour, luckily it generates seismic waves you can measure.
+  - Worms coming close to the surface also create seismic waves. So you get a warming of the worms.
