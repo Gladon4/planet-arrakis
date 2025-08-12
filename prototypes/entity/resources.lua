@@ -5,7 +5,7 @@ data:extend(
         {
             type = "resource",
             name = "spice-ore",
-            icon = "__base__/graphics/icons/iron-ore.png",
+            icon = "__planet-arrakis__/graphics/icons/spice-ore.png",
             flags = {"placeable-neutral"},
             --order= "",
             tree_removal_probability = 0.8,
@@ -17,6 +17,8 @@ data:extend(
                 result = "spice"
             },
             category = "spice-mining",
+            subgroup = "arrakis-processes",
+            order="e[spice-ore]",
             -- subgroup = resource_parameters.subgroup,
             -- walking_sound = resource_parameters.walking_sound,
             -- collision_mask = resource_parameters.collision_mask,
@@ -27,12 +29,12 @@ data:extend(
             {
             sheet =
             {
-                filename = "__base__/graphics/entity/iron-ore/iron-ore.png",
+                filename = "__planet-arrakis__/graphics/entity/spice-ore/spice-ore.png",
                 priority = "extra-high",
                 size = 128,
                 frame_count = 8,
                 variation_count = 8,
-                scale = 0.5
+                scale = 0.8
             }
             },
             --resource_patch_search_radius = resource_parameters.resource_patch_search_radius,
@@ -49,6 +51,7 @@ data:extend(
                 -- tile_restriction = autoplace_parameters.tile_restriction
             },
             map_color = {0.2, 0.5, 0.8},
+            mining_visualisation_tint = { r = 0.1, g = 0.3, b = 1.0, a = 1.0 },
         }
     }
 )
