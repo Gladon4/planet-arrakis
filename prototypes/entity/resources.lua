@@ -27,16 +27,35 @@ data:extend(
             stage_counts = {15000, 9500, 5500, 2900, 1300, 400, 150, 80},
             stages =
             {
-            sheet =
-            {
-                filename = "__planet-arrakis__/graphics/entity/spice-ore/spice-ore.png",
-                priority = "extra-high",
-                size = 128,
-                frame_count = 8,
-                variation_count = 8,
-                scale = 0.8
-            }
+                sheet =
+                {
+                    filename = "__planet-arrakis__/graphics/entity/spice-ore/spice-ore.png",
+                    priority = "extra-high",
+                    size = 128,
+                    frame_count = 8,
+                    variation_count = 8,
+                    scale = 0.8
+                }
             },
+            stages_effect =
+            {
+                sheet =
+                {
+                    filename = "__planet-arrakis__/graphics/entity/spice-ore/spice-sparkle.png",
+                    priority = "extra-high",
+                    size = 128,
+                    frame_count = 8,
+                    variation_count = 8,
+                    scale = 0.35,
+                    blend_mode = "additive",
+                    flags = { "light" }
+                }
+            },
+            effect_animation_period = 3.0,
+            effect_animation_period_deviation = 0.5,
+            effect_darkness_multiplier = 4.0,
+            min_effect_alpha = 0.05,
+            max_effect_alpha = 0.5,
             --resource_patch_search_radius = resource_parameters.resource_patch_search_radius,
             autoplace = resource_autoplace.resource_autoplace_settings
             {
