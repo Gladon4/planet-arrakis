@@ -21,6 +21,51 @@ tile_collision_masks.deep_desert_sand = function()
   }}
 end
 
+-- 1) basis for island shapes (tweak input_scale to change island size)
+data:extend{
+  {
+    type = "noise-expression",
+    name = "rock_lower_limit",
+    expression = 53,
+  },
+  {
+    type = "noise-expression",
+    name = "deep_desert_upper_limit",
+    expression = -24,
+  },
+  {
+    type = "noise-expression",
+    name = "arrakis_basis",
+    expression = "multioctave_noise{x = x, y = y, seed0 = map_seed, seed1 = 1, octaves = 6, persistence = 0.67, input_scale = 1/16, output_scale = 80}"
+  },
+
+  -- 2) rock mask (boolean-style)
+  {
+    type = "noise-expression",
+    name = "arrakis_rock_mask",
+    expression = "arrakis_basis > rock_lower_limit"
+  },
+
+  -- 4) sand / deep sand masks
+  {
+    type = "noise-expression",
+    name = "arrakis_sand_mask",
+    expression = "(arrakis_basis <= rock_lower_limit) * (arrakis_basis >= deep_desert_upper_limit)"
+  },
+  {
+    type = "noise-expression",
+    name = "arrakis_deep_sand_mask",
+    expression = "arrakis_basis < deep_desert_upper_limit"
+  },
+
+  {
+    type = "noise-expression",
+    name = "arrakis_elevation",
+    expression = "arrakis_basis"
+  }
+}
+
+
 
 local function transition_masks()
   return {
@@ -59,27 +104,6 @@ end
 data:extend(
     {
         {
-            type = "noise-expression",
-            name = "deep_desert_to_sand_threshold",
-            expression = "0.1"
-        },
-        {
-            type = "noise-expression",
-            name = "sand_to_rock_threshold",
-            expression = "0.4"
-        },
-        {
-            type = "noise-expression",
-            name = "arrakis_desert_noise",
-            expression = "multioctave_noise{x = x,\z
-                                            y = y,\z
-                                            persistence = 0.7,\z
-                                            seed0 = map_seed,\z
-                                            seed1 = 0,\z
-                                            octaves = 8,\z
-                                            input_scale = 0.03}"
-        },
-        {
           type = "tile",
           name = "arrakis-deep-desert-sand",
           -- subgroup = "vulcanus-tiles",
@@ -87,7 +111,8 @@ data:extend(
           collision_mask = tile_collision_masks.deep_desert_sand(),
           autoplace =
           {
-            probability_expression = "arrakis_desert_noise <= deep_desert_to_sand_threshold"
+            -- probability_expression = "arrakis_deep_sand_mask"
+            probability_expression = "arrakis_deep_sand_mask"
           },
           layer = 1,
           layer_group = "ground-natural",
@@ -116,13 +141,16 @@ data:extend(
         },
         {
           type = "tile",
-          name = "arrakis-sand",
+          name = "arrakis-desert-sand",
           -- subgroup = "vulcanus-tiles",
           -- order = "a-c",
           collision_mask = tile_collision_masks.desert_sand(),
           autoplace =
           {
-            probability_expression = "(arrakis_desert_noise > deep_desert_to_sand_threshold) & (arrakis_desert_noise <= sand_to_rock_threshold)"
+            
+            --probability_expression = "arrakis_sand_mask"
+            probability_expression = "arrakis_sand_mask"
+            -- probability_expression = "(arrakis_desert_noise > deep_desert_to_sand_threshold) & (arrakis_desert_noise <= sand_to_rock_threshold)"
           },
           layer = 2,
           layer_group = "ground-natural",
@@ -132,7 +160,7 @@ data:extend(
             transition = transition_masks(),
             material_background =
             {
-              picture = "__planet-arrakis__/graphics/terrain/arrakis-sand.png",
+              picture = "__planet-arrakis__/graphics/terrain/arrakis-desert-sand.png",
               line_length = 4,
               count = 16,
               scale = 0.5
@@ -157,7 +185,9 @@ data:extend(
             collision_mask = tile_collision_masks.ground(),
             autoplace =
             {
-              probability_expression = "arrakis_desert_noise > sand_to_rock_threshold"
+              probability_expression = "arrakis_rock_mask"
+              --probability_expression = "arrakis_rock_mask"
+              -- probability_expression = "arrakis_desert_noise > sand_to_rock_threshold"
             },
             layer = 3,
             -- sprite_usage_surface = "arrakis",
@@ -186,3 +216,4 @@ data:extend(
           },
     }
 )
+

@@ -3,8 +3,8 @@ require("prototypes.function")
 local WORM = "small-sandworm"
 local POLLUTION_THRESHOLD = 15
 local ATTACK_DISTANCE = 90
-local MIN_SPICE_BLOW_RADIUS = 5
-local MAX_SPICE_BLOW_RADIUS = 15
+local MIN_SPICE_BLOW_RADIUS = 10
+local MAX_SPICE_BLOW_RADIUS = 30
 local SPICE_ORE_AMOUNT = 3000
 local CHANCE = 0.001
 local SPAWN_DELAY = 7200
@@ -142,7 +142,7 @@ local function spawn_spice_blow(surface, ore_name, ore_amount)
                 local dist_squared = dx * dx + dy * dy
                 if dist_squared <= radius * radius then
                     local ore_position = { x = position.x + dx, y = position.y + dy }
-                    if math.random() < 0.6 then
+                    if math.random() < 0.5 then
                         surface.create_entity({
                             name = "big-artillery-explosion",
                             position = ore_position,
