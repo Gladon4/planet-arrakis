@@ -21,7 +21,7 @@ data:extend(
             subgroup = "planets",
             map_gen_settings = planet_map_gen.arrakis(),
             pollutant_type = "noise",
-            solar_power_in_space = 200,
+            solar_power_in_space = 250,
             asteroid_spawn_influence = 1,
             asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus, 0.9),
             surface_properties =
@@ -40,8 +40,8 @@ data:extend(
             from = "nauvis",
             to = "arrakis",
             order = "a",
-            length = 15000,
+            length = 30000,
             asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus)
-        },
+        }
     }
 )
