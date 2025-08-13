@@ -19,7 +19,8 @@ planet_map_gen.arrakis = function ()
         },
         autoplace_controls =
         {
-            
+            -- ["spice-ore"] = {},
+            ["rocks"] = {},
         },
                     
         autoplace_settings =
@@ -37,8 +38,9 @@ planet_map_gen.arrakis = function ()
             {
                 settings =
                 {
-                    -- ["medium-sand-rock"] = {},
-                    -- ["small-sand-rock"] = {}
+                    ["small-sand-rock"] = {},
+                    ["red-desert-bush"] = {},
+                    ["white-desert-bush"] = {}
                 }
             },
             ["entity"] =
