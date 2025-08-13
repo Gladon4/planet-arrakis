@@ -12,14 +12,13 @@ planet_map_gen.arrakis = function ()
         
         cliff_settings = {
             name = "cliff",
-            cliff_elevation_0 = 58,
+            cliff_elevation_0 = 60,
             cliff_elevation_interval = 80,
             cliff_smoothing = 0,
             richness = 0.95
         },
         autoplace_controls =
         {
-            -- ["spice-ore"] = {},
             ["rocks"] = {},
         },
                     

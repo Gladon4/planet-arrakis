@@ -26,7 +26,7 @@ data:extend{
   {
     type = "noise-expression",
     name = "rock_lower_limit",
-    expression = 45,
+    expression = 53,
   },
   {
     type = "noise-expression",
@@ -36,7 +36,7 @@ data:extend{
   {
     type = "noise-expression",
     name = "arrakis_basis",
-    expression = "multioctave_noise{x = x, y = y, seed0 = map_seed, seed1 = 1, octaves = 6, persistence = 0.67, input_scale = 1/8, output_scale = 80}"
+    expression = "multioctave_noise{x = x, y = y, seed0 = map_seed, seed1 = 1, octaves = 6, persistence = 0.67, input_scale = 1/16, output_scale = 80}"
   },
 
   -- 2) rock mask (boolean-style)

@@ -1,4 +1,27 @@
-local resource_autoplace = require("resource-autoplace")  
+local resource_autoplace = require("resource-autoplace")
+
+data:extend{
+  {
+    type = "noise-expression",
+    name = "spice_subtract_noise",
+    expression = "multioctave_noise{x = x, y = y, seed0 = map_seed, seed1 = 112, octaves = 4, persistence = 0.67} > 0.3"
+  },
+  {
+    type = "noise-expression",
+    name = "voronoi_base",
+    expression = "((1000 * voronoi_spot_noise{x = x, y = y, seed0 = map_seed, seed1 = 1, grid_size = 512, distance_type = 2}) < 75)"
+  },
+  {
+    type = "noise-expression",
+    name = "spice_scale_noise",
+    expression = "abs(multioctave_noise{x = x, y = y, seed0 = map_seed, seed1 = 112, octaves = 4, persistence = 0.67, output_scale = 500})"
+  },
+  {
+    type = "noise-expression",
+    name = "spice_ore_gen",
+    expression = "(voronoi_base - spice_subtract_noise) * spice_scale_noise * arrakis_deep_sand_mask"
+  },
+}
 
 data:extend(
     {
@@ -57,17 +80,9 @@ data:extend(
             min_effect_alpha = 0.05,
             max_effect_alpha = 0.5,
             --resource_patch_search_radius = resource_parameters.resource_patch_search_radius,
-            autoplace = resource_autoplace.resource_autoplace_settings
+            autoplace =
             {
-                name = "spice-ore",
-                order = "a",
-                base_density = 10,
-                -- base_spots_per_km = 1,
-                has_starting_area_placement = false,
-                regular_rq_factor_multiplier = 0,
-                starting_rq_factor_multiplier = 0,
-                candidate_spot_count = 0,
-                -- tile_restriction = autoplace_parameters.tile_restriction
+                probability_expression = "spice_ore_gen"
             },
             map_color = {0.2, 0.5, 0.8},
             mining_visualisation_tint = { r = 0.1, g = 0.3, b = 1.0, a = 1.0 },
