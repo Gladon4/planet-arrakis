@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.6.0
+Date: 2025-08-13
+  Features:
+    - Cliff Generation
+    - Rock and decorations
+    - Spice now generates on planet generation not just through spice blows
+---------------------------------------------------------------------------------------------------
 Version: 0.5.5
 Date: 2025-08-12
   Bugfixes:
