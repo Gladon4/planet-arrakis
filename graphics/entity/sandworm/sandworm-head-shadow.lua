@@ -11,5 +11,5 @@ return
     "-4.png",
     "-5.png",
   },
-  lines_per_file = 7,
+  lines_per_file = 7
 }

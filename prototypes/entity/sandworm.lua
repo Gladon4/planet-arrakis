@@ -77,7 +77,7 @@ local function make_sandworm_head(base_name, order, scale, damage_multiplier, he
       layers =
       {
         sandworm_spritesheet("head", false, 0.5 * scale),
-        sandworm_spritesheet("head-shadow", true, 0.5 * scale),
+        sandworm_spritesheet("head-shadow", true, 0.6 * scale), --rendered scaled down, makes the blend file and rendering simpler
       }
     }
     head.update_effects = 
