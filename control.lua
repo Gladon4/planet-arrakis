@@ -137,17 +137,19 @@ local function spawn_spice_blow(surface, ore_name, ore_amount)
         local position = spice_blow.position
         local radius = spice_blow.radius
 
+        -- TODO: custom explosion
+        surface.create_entity({
+            name = "big-artillery-explosion",
+            position = position,
+            force = "neutral"
+        })
+
         for dx = -radius, radius do
             for dy = -radius, radius do
                 local dist_squared = dx * dx + dy * dy
                 if dist_squared <= radius * radius then
                     local ore_position = { x = position.x + dx, y = position.y + dy }
                     if math.random() < 0.5 then
-                        surface.create_entity({
-                            name = "big-artillery-explosion",
-                            position = ore_position,
-                            force = "neutral"
-                        })
 
                         surface.create_entity({
                             name = ore_name,
