@@ -6,48 +6,49 @@ local simulations = require("__space-age__.prototypes.factoriopedia-simulations"
 
 local sandworm_segment_scales =
 {
-  1.09,
-  1.27,
-  1.36,
-  1.36,
-  1.36,
-  1.36,
-  1.33,
-  1.30,
-  1.37,
-  1.52,
-  1.52,
-  1.40,
-  1.41,
-  1.28,
-  1.28,
-  1.17,
-  1.10,
-  1.08,
-  1.08,
-  1.09,
-  1.20,
-  1.20,
-  1.10,
-  1.10,
-  0.99,
-  0.99,
-  0.99,
-  0.87,
-  0.87,
-  0.97,
-  0.87,
-  0.97,
-  0.99,
-  0.87,
-  0.87,
-  0.87,
-  0.87,
-  0.77,
-  0.77,
-  0.65,
-  0.64,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
+  1.16,
 }
+
 
 
 local function sandworm_spritesheet(file_name, is_shadow, scale)
@@ -76,7 +77,7 @@ local function make_sandworm_head(base_name, order, scale, damage_multiplier, he
       layers =
       {
         sandworm_spritesheet("head", false, 0.5 * scale),
-        sandworm_spritesheet("head-shadow", true, 0.5 * scale),
+        sandworm_spritesheet("head-shadow", true, 0.6 * scale), --rendered scaled down, makes the blend file and rendering simpler
       }
     }
     head.update_effects = 
@@ -111,8 +112,8 @@ local function make_sandworm_head(base_name, order, scale, damage_multiplier, he
     }
     head.corpse = nil
     head.dying_trigger_effect = nil
-    head.turn_radius = 8 * scale
-    head.patrolling_turn_radius = 10 * scale
+    head.turn_radius = 12 * scale
+    head.patrolling_turn_radius = 17 * scale
 
     return head
 end
