@@ -112,8 +112,8 @@ local function make_sandworm_head(base_name, order, scale, damage_multiplier, he
     }
     head.corpse = nil
     head.dying_trigger_effect = nil
-    head.turn_radius = 8 * scale
-    head.patrolling_turn_radius = 10 * scale
+    head.turn_radius = 12 * scale
+    head.patrolling_turn_radius = 17 * scale
 
     return head
 end
