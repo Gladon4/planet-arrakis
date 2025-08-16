@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.6.5
+Date: 2025-08-16
+  Graphics:
+    - New Custom Sandwom Tail Texture
+    - New Custom Sandworm Head Sprites
+    - New Custom Sandworm Segment Sprites
+    - New Custom Shadow Textures for the new Sandworms
+---------------------------------------------------------------------------------------------------
 Version: 0.6.4
 Date: 2025-08-16
   Bugfixes:
