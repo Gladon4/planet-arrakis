@@ -9,7 +9,6 @@
   "dependencies": [
     "base",
     "space-age",
-    "! IntermodalContainers",
     "! alien-biomes"
   ],
   "quality_required": false,
