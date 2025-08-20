@@ -8,8 +8,7 @@
   "factorio_version": "2.0",
   "dependencies": [
     "base",
-    "space-age",
-    "! alien-biomes"
+    "space-age"
   ],
   "quality_required": false,
   "rail_bridges_required": true,
