@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.6.7
+Date: 2025-08-20
+  Bugfixes:
+    - Old saves played with the mod should no longer break the save in way that it becomes unplayable
+---------------------------------------------------------------------------------------------------
 Version: 0.6.6
 Date: 2025-08-16
   Bugfixes:
