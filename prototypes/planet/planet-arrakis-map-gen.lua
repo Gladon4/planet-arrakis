@@ -1,3 +1,4 @@
+-- This is only here to make sure old saves don't break.
 data:extend(
     {
         {
