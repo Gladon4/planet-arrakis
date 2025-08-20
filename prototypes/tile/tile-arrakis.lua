@@ -65,6 +65,30 @@ data:extend{
   }
 }
 
+-- This is only here to make sure old saves don't break.
+data:extend{
+  {
+    type = "noise-expression",
+    name = "arrakis_desert_noise",
+    expression = "arrakis_sand_mask"
+  },
+  {
+    type = "noise-expression",
+    name = "deep_desert_to_sand_threshold",
+    expression = "0.5"
+  },
+  {
+    type = "noise-expression",
+    name = "sand_rock_cutoff",
+    expression = "1"
+  },
+  {
+    type = "noise-expression",
+    name = "worm_territory_size",
+    expression = "100"
+  },
+}
+
 
 
 local function transition_masks()
