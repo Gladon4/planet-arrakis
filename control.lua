@@ -28,6 +28,63 @@ local function already_attacked(surface, position, radius)
     return false
 end
 
+local ORE_PER_TICK = 1
+local MINE_PROB = 0.1
+local MINE_RADIUS = 7
+local POLLUTION_PER_ORE = 0.03
+
+script.on_nth_tick(60, function()
+    if not game.surfaces["arrakis"] then return end
+
+    local arrakis = game.surfaces["arrakis"]
+
+    local cars = arrakis.find_entities_filtered({
+        name = "mining-car"
+    })
+
+    if not cars or table_size(cars) == 0 then return end
+
+    for _, car in ipairs(cars) do
+        if not car.valid then goto continue end
+        local inventory = car.get_inventory(defines.inventory.car_trunk)
+        if not inventory then goto continue end
+
+        
+        local ores = arrakis.find_entities_filtered({
+            name = "spice-ore",
+            position = car.position,
+            radius = MINE_RADIUS
+        })
+
+        for _, ore in ipairs(ores) do
+            if not ore.valid then goto next_ore end
+
+            if not (math.random() < MINE_PROB) then goto next_ore end 
+
+            local take = math.min(ORE_PER_TICK, ore.amount)
+
+            local inserted = inventory.insert({
+                name = "spice",
+                count = take
+            })
+            
+            if inserted > 0 then
+                arrakis.pollute(ore.position, POLLUTION_PER_ORE)
+                if ore.amount - inserted <= 0 then
+                    ore.destroy()
+                else
+                    ore.amount = ore.amount - inserted
+                end
+            end
+
+            ::next_ore::
+        end
+
+        ::continue::
+        
+    end
+end)
+
 script.on_nth_tick(1200, function()
     if game.surfaces["arrakis"] then
         arrakis = game.surfaces["arrakis"]

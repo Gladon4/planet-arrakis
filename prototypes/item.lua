@@ -4,7 +4,7 @@ data:extend(
             type = "item",
             name = "spice",
             subgroup = "arrakis-processes",
-            stack_size = 100,
+            stack_size = 20,
             icon = "__planet-arrakis__/graphics/icons/spice.png",
         },
         {

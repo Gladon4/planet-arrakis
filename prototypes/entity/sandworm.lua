@@ -50,7 +50,6 @@ local sandworm_segment_scales =
 }
 
 
-
 local function sandworm_spritesheet(file_name, is_shadow, scale)
     is_shadow = is_shadow or false
     return util.sprite_load("__planet-arrakis__/graphics/entity/sandworm/sandworm-" .. file_name,
