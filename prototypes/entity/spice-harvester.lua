@@ -12,25 +12,16 @@ data.extend{{
     effectivity = 0.2,
     max_health = 1000,
     deliver_category = "vehicle",
-    collision_box = {{-3, -3}, {3, 3}},
-    selection_box = {{-3, -3}, {3, 3}},
+    collision_box = {{-3, -5}, {3, 4}},
+    selection_box = {{-3, -5}, {3, 4}},
     energy_source =
     {
       type = "burner",
       fuel_categories = {"chemical"},
       effectivity = 1,
       fuel_inventory_size = 3,
-      smoke =
-      {
-        {
-          name = "car-smoke",
-          deviation = {0.25, 0.25},
-          frequency = 200,
-          position = {0, 1.5},
-          starting_frame = 0,
-          starting_frame_deviation = 60
-        }
-      }
+      -- TODO: fitting smoke
+      smoke = nil,
     },
     friction = 0.15,
     render_layer = "object",
@@ -46,14 +37,13 @@ data.extend{{
                 width = 400,
                 height = 400,
                 frame_count = 2,
-                scale = 1,
+                scale = 1.0,
                 direction_count = 64,
                 shift = util.by_pixel(0, 0),
                 animation_speed = 8,
                 max_advance = 0.2,
                 stripes =
-                {
-                {
+                {{
                 filename = "__planet-arrakis__/graphics/entity/harvester/harvester-1.png",
                 width_in_frames = 8,
                 height_in_frames = 8
@@ -63,7 +53,31 @@ data.extend{{
                 width_in_frames = 8,
                 height_in_frames = 8
                 }}
-            }
+              },
+              {
+                priority = "low",
+                width = 400,
+                height = 400,
+                frame_count = 2,
+                draw_as_shadow = true,
+                direction_count = 64,
+                scale = 1.2,
+                shift = {1.4, 0},
+                max_advance = 0.2,
+                stripes = util.multiplystripes(2,
+                {
+                  {
+                  filename = "__planet-arrakis__/graphics/entity/harvester/harvester-shadow-1.png",
+                  width_in_frames = 8,
+                  height_in_frames = 8
+                  },
+                  {
+                  filename = "__planet-arrakis__/graphics/entity/harvester/harvester-shadow-2.png",
+                  width_in_frames = 8,
+                  height_in_frames = 8
+                  }
+                })
+              }
         }
     },
     surface_conditions =
