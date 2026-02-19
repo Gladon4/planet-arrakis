@@ -1,6 +1,7 @@
 require("prototypes.function")
 
 local WORM = "small-sandworm"
+local WORMS = {"small-sandworm", "medium-sandworm", "big-sandworm"}
 local POLLUTION_THRESHOLD = 15
 local ATTACK_DISTANCE = 80
 local MIN_SPICE_BLOW_RADIUS = 10
@@ -15,7 +16,7 @@ local DISAPPEAR_PROB = 0.3
 local worm_brain = {}
 
 local function already_attacked(surface, position, radius)
-    local worms = surface.find_entities_filtered { name = WORM }
+    local worms = surface.find_entities_filtered { name = WORMS }
 
     if table_size(worms) == 0 then
         return false
@@ -106,7 +107,7 @@ script.on_nth_tick(60, function()
         
     end
 
-    local worms = arrakis.find_entities_filtered { name = WORM }
+    local worms = arrakis.find_entities_filtered { name = WORMS }
     if table_size(worms) == 0 then return end
 
     for _, worm in pairs(worms) do
@@ -166,7 +167,7 @@ script.on_nth_tick(600, function()
             end
         end
 
-        local worms = arrakis.find_entities_filtered { name = WORM }
+        local worms = arrakis.find_entities_filtered { name = WORMS }
         if table_size(worms) > 0 then
             for _, worm in pairs(worms) do
                 local position = { x = worm.position.x, y = worm.position.y }
