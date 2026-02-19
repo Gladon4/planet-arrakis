@@ -23,6 +23,13 @@ data:extend{
   },
 }
 
+data:extend({
+  {
+    type = "resource-category",
+    name = "spice-mining"
+  }
+})
+
 data:extend(
     {
         {

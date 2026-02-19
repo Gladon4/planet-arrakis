@@ -15,7 +15,7 @@ data:extend(
               },
               {
                 type = "unlock-recipe",
-                recipe = "stationary-spice-harvester"
+                recipe = "spice-harvester"
               }
             },
             prerequisites = {"metallurgic-science-pack", "electromagnetic-science-pack", "agricultural-science-pack"},

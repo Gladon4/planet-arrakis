@@ -31,8 +31,8 @@ local function already_attacked(surface, position, radius)
 end
 
 local ORE_PER_TICK = 1
-local MINE_PROB = 0.1
-local MINE_RADIUS = 7
+local MINE_PROB = 0.5
+local MINE_RADIUS = 3
 local POLLUTION_PER_ORE = 0.03
 
 script.on_nth_tick(60, function()
@@ -40,21 +40,41 @@ script.on_nth_tick(60, function()
 
     local arrakis = game.surfaces["arrakis"]
 
-    local cars = arrakis.find_entities_filtered({
-        name = "mining-car"
+    spice = arrakis.find_entities_filtered{name="spice-ore"}
+
+    if not spice or table_size(spice) == 0 then goto skip_spice end
+
+    for _, ore in ipairs(spice) do
+        if not (math.random() < DISAPPEAR_PROB) then goto continue1 end
+
+        if ore.amount == 1 then 
+            ore.destroy()
+        else
+            ore.amount = ore.amount - 1
+        end
+
+        ::continue1::
+    end
+
+    ::skip_spice::
+
+    local harvesters = arrakis.find_entities_filtered({
+        name = "spice-harvester"
     })
 
-    if not cars or table_size(cars) == 0 then return end
+    if not harvesters or table_size(harvesters) == 0 then return end
 
-    for _, car in ipairs(cars) do
-        if not car.valid then goto continue end
-        local inventory = car.get_inventory(defines.inventory.car_trunk)
-        if not inventory then goto continue end
+    for _, harvester in ipairs(harvesters) do
+        if not harvester.valid then goto continue2 end
+        if harvester.speed == 0 then goto continue2 end
+
+        local inventory = harvester.get_inventory(defines.inventory.car_trunk)
+        if not inventory then goto continue2 end
 
         
         local ores = arrakis.find_entities_filtered({
             name = "spice-ore",
-            position = car.position,
+            position = harvester.position,
             radius = MINE_RADIUS
         })
 
@@ -82,7 +102,7 @@ script.on_nth_tick(60, function()
             ::next_ore::
         end
 
-        ::continue::
+        ::continue2::
         
     end
 end)
@@ -147,27 +167,6 @@ script.on_nth_tick(1200, function()
                 arrakis.pollute(position, -pollution)
             end
         end
-    end
-end)
-
-script.on_nth_tick(60, function()
-    if not game.surfaces["arrakis"] then return end
-
-    arrakis = game.surfaces["arrakis"]
-    spice = arrakis.find_entities_filtered{name="spice-ore"}
-
-    if not spice or table_size(spice) == 0 then return end
-
-    for _, ore in ipairs(spice) do
-        if not (math.random() < DISAPPEAR_PROB) then goto continue end
-
-        if ore.amount == 1 then 
-            ore.destroy()
-        else
-            ore.amount = ore.amount - 1
-        end
-
-        ::continue::
     end
 end)
 
@@ -258,110 +257,5 @@ script.on_event(defines.events.on_tick, function(event)
     -- Spawn the spice ore
     if event.tick % FREQUENCY == SPAWN_DELAY then
         spawn_spice_blow(game.surfaces["arrakis"], "spice-ore", SPICE_ORE_AMOUNT)
-    end
-end)
-
-script.on_event(defines.events.on_built_entity, function(event)
-    local entity = event.entity
-    if not (entity and entity.valid) then return end
-
-    -- Only target electric mining drills
-    if entity.name ~= "stationary-spice-harvester" then return end
-
-    -- Get the mining drill's output position
-    local drill = entity
-    local output_position = drill.position
-    local direction = drill.direction
-
-    -- Calculate output position based on direction
-    local offset = {
-        [defines.direction.north] = { x = 0, y = -3 },
-        [defines.direction.east]  = { x = 2, y = 0 },
-        [defines.direction.south] = { x = 0, y = 2 },
-        [defines.direction.west]  = { x = -3, y = 0 }
-    }
-
-    local delta = offset[direction] or { x = 0, y = 1 } -- default to south
-    local chest_position = {
-        x = output_position.x + delta.x,
-        y = output_position.y + delta.y
-    }
-
-    -- Check if the tile is already occupied
-    local surface = drill.surface
-
-    -- Place a steel chest at the output position
-    surface.create_entity({
-        name = "steel-chest",
-        position = chest_position,
-        force = drill.force,
-        create_build_effect_smoke = true
-    })
-end)
-
-script.on_event(defines.events.on_pre_player_mined_item, function(event)
-    local entity = event.entity
-    if not (entity and entity.valid) then return end
-
-    if entity.name == "stationary-spice-harvester" then
-        local offset = {
-            [defines.direction.north] = { x = 0, y = -2.5 },
-            [defines.direction.east]  = { x = 2.5, y = 0 },
-            [defines.direction.south] = { x = 0, y = 2.5 },
-            [defines.direction.west]  = { x = -2.5, y = 0 }
-        }
-        local delta = offset[entity.direction] or { x = 0, y = 1 }
-        local chest_position = {
-            x = entity.position.x + delta.x,
-            y = entity.position.y + delta.y
-        }
-
-        local surface = entity.surface
-
-        local player = game.get_player(event.player_index)
-        if not player then return end
-
-        local player_inv = player.get_main_inventory()
-        if not player_inv then return end
-
-        local chests = surface.find_entities_filtered {
-            position = chest_position,
-            name = "steel-chest"
-        }
-
-        for _, chest in pairs(chests) do
-            if chest and chest.valid then
-                local chest_inv = chest.get_inventory(defines.inventory.chest)
-                if chest_inv and chest_inv.valid then
-                    local contents = chest_inv.get_contents()
-                    for _, content in pairs(contents) do
-                        if content then
-                            local inserted = player_inv.insert({
-                                name = content.name,
-                                count = content.count,
-                                quality = content.quality
-                            })
-                            if inserted and inserted > 0 then
-                                player.create_local_flying_text {
-                                    text = { "", "+", inserted, " ", { "item-name." .. content.name } },
-                                    create_at_cursor = true
-                                }
-                            end
-                            if type(inserted) == "number" and inserted < content.count then
-                                surface.spill_item_stack({
-                                    position = player.position,
-                                    stack = {
-                                        name = content.name,
-                                        count = content.count - inserted,
-                                        quality = content.quality
-                                    }
-                                })
-                            end
-                        end
-                    end
-                end
-                chest.destroy()
-            end
-        end
     end
 end)

@@ -9,13 +9,13 @@ data:extend(
         },
         {
             type = "item",
-            name = "stationary-spice-harvester",
-            icon = "__base__/graphics/icons/electric-mining-drill.png",
+            name = "spice-harvester",
+            icon = "__base__/graphics/icons/car.png",
             icon_size = 64,
             subgroup = "extraction-machine",
-            order = "a[items]-z[stationary-spice-harvester]",
-            place_result = "stationary-spice-harvester",
-            stack_size = 10
+            order = "a[items]-z[spice-harvester]",
+            place_result = "spice-harvester",
+            stack_size = 1
         }
     }
 )
