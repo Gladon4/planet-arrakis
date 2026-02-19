@@ -88,7 +88,7 @@ local function make_sandworm_head(base_name, order, scale, damage_multiplier, he
             action =
             {
                 type = "area",
-                radius = 15,
+                radius = 20,
                 force = "not-same",
                 collision_mask = { layers = { player = true, train = true, rail = true, transport_belt = true, is_object = true } },
                 action_delivery =

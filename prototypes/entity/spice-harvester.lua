@@ -32,7 +32,7 @@ data.extend{{
         }
       }
     },
-    friction = 0.2,
+    friction = 0.15,
     render_layer = "object",
     weight = 2000,
     guns = {},
@@ -45,9 +45,9 @@ data.extend{{
                 priority = "low",
                 width = 400,
                 height = 400,
-                frame_count = 1,
+                frame_count = 2,
                 scale = 1,
-                direction_count = 1,
+                direction_count = 64,
                 shift = util.by_pixel(0, 0),
                 animation_speed = 8,
                 max_advance = 0.2,
@@ -55,8 +55,13 @@ data.extend{{
                 {
                 {
                 filename = "__planet-arrakis__/graphics/entity/harvester/harvester-1.png",
-                width_in_frames = 1,
-                height_in_frames = 1
+                width_in_frames = 8,
+                height_in_frames = 8
+                },
+                {
+                filename = "__planet-arrakis__/graphics/entity/harvester/harvester-2.png",
+                width_in_frames = 8,
+                height_in_frames = 8
                 }}
             }
         }
@@ -69,4 +74,5 @@ data.extend{{
         max = 1250
       }
     },
+    emissions_per_second = { noise=0.3 }
 }}

@@ -33,7 +33,7 @@ end
 local ORE_PER_TICK = 1
 local MINE_PROB = 0.5
 local MINE_RADIUS = 3
-local POLLUTION_PER_ORE = 0.03
+local POLLUTION_PER_ORE = 0
 
 script.on_nth_tick(60, function()
     if not game.surfaces["arrakis"] then return end
