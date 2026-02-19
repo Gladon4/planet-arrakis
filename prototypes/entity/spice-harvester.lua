@@ -3,7 +3,7 @@ data.extend{{
     name = "spice-harvester",
     icon = "__planet-arrakis__/graphics/icons/harvester.png",
     flags = {"placeable-neutral", "player-creation", "placeable-off-grid", "not-flammable"},
-    minable = {mining_time = 0.4, result = "spice-harvester"},
+    minable = {mining_time = 10.0, result = "spice-harvester"},
     allow_remote_driving = true,
     consumption = "1500kW",
     braking_power = "10000kW",
