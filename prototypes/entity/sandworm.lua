@@ -67,6 +67,8 @@ end
 
 local function make_sandworm_head(base_name, order, scale, damage_multiplier, health, regen, speed_multiplier)
     local head = make_demolisher_head(base_name, order, scale, damage_multiplier, health, regen, speed_multiplier, simulations.factoriopedia_vulcanus_enemy_small_demolisher, space_age_sounds.demolisher.small)
+    -- TODO: maybe custom revenge attack
+    head.revenge_attack_parameters = nil
     head.vision_distance = 100
     
     head.icon = "__planet-arrakis__/graphics/icons/sandworm.png"

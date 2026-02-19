@@ -2,7 +2,7 @@ require("prototypes.function")
 
 local WORM = "small-sandworm"
 local POLLUTION_THRESHOLD = 15
-local ATTACK_DISTANCE = 90
+local ATTACK_DISTANCE = 80
 local MIN_SPICE_BLOW_RADIUS = 10
 local MAX_SPICE_BLOW_RADIUS = 30
 local SPICE_ORE_AMOUNT = 3000
@@ -105,9 +105,23 @@ script.on_nth_tick(60, function()
         ::continue2::
         
     end
+
+    local worms = arrakis.find_entities_filtered { name = WORM }
+    if table_size(worms) == 0 then return end
+
+    for _, worm in pairs(worms) do
+        for _, harvester in pairs(harvesters) do
+            if distance(harvester.position, worm.position) > 100 then
+                goto next_harvester
+            end
+            worm.damage(100, game.forces.player, "physical", harvester)
+
+            ::next_harvester::
+        end 
+    end
 end)
 
-script.on_nth_tick(1200, function()
+script.on_nth_tick(600, function()
     if game.surfaces["arrakis"] then
         arrakis = game.surfaces["arrakis"]
         for chunk in arrakis.get_chunks() do
@@ -141,6 +155,13 @@ script.on_nth_tick(1200, function()
                         direction = directions[dir_index],
                         force = "enemy"
                     })
+                    cars = arrakis.find_entities_filtered{type="car", position=chunk_position, radius=50}
+                    
+                    if table_size(cars) > 0 then 
+                        for _, vehicle in pairs(cars) do
+                            new_worm.damage(100, game.forces.player, "physical", vehicle)
+                        end
+                    end
                 end
             end
         end

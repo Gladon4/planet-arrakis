@@ -74,5 +74,5 @@ data.extend{{
         max = 1250
       }
     },
-    emissions_per_second = { noise=0.3 }
+    emissions_per_second = { noise=0.5 }
 }}
