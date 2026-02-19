@@ -10,6 +10,8 @@ local CHANCE = 0.001
 local SPAWN_DELAY = 7200
 local FREQUENCY = 60 * 60 * 15
 
+local DISAPPEAR_PROB = 0.3
+
 local worm_brain = {}
 
 local function already_attacked(surface, position, radius)
@@ -145,6 +147,27 @@ script.on_nth_tick(1200, function()
                 arrakis.pollute(position, -pollution)
             end
         end
+    end
+end)
+
+script.on_nth_tick(60, function()
+    if not game.surfaces["arrakis"] then return end
+
+    arrakis = game.surfaces["arrakis"]
+    spice = arrakis.find_entities_filtered{name="spice-ore"}
+
+    if not spice or table_size(spice) == 0 then return end
+
+    for _, ore in ipairs(spice) do
+        if not (math.random() < DISAPPEAR_PROB) then goto continue end
+
+        if ore.amount == 1 then 
+            ore.destroy()
+        else
+            ore.amount = ore.amount - 1
+        end
+
+        ::continue::
     end
 end)
 

@@ -36,7 +36,10 @@ data:extend{
   {
     type = "noise-expression",
     name = "arrakis_basis",
-    expression = "multioctave_noise{x = x, y = y, seed0 = map_seed, seed1 = 1, octaves = 6, persistence = 0.67, input_scale = 1/16, output_scale = 80}"
+    expression = "multioctave_noise{x = x, y = y, \z
+                                  seed0 = map_seed, seed1 = 1, \z 
+                                  octaves = 6, persistence = 0.67, \z 
+                                  input_scale = 1/16, output_scale = 80}"
   },
 
   -- 2) rock mask (boolean-style)
@@ -168,7 +171,7 @@ data:extend(
           name = "arrakis-desert-sand",
           -- subgroup = "vulcanus-tiles",
           -- order = "a-c",
-          collision_mask = tile_collision_masks.desert_sand(),
+          collision_mask = tile_collision_masks.ground(),
           autoplace =
           {
             
