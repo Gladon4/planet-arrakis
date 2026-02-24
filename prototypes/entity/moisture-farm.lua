@@ -34,11 +34,11 @@ data.extend{
                      {
                         filename = "__planet-arrakis__/graphics/entity/moisture-farm/moisture-farm-shadow-1.png",
                         priority = "high",
-                        width = 300,
-                        height = 200,
+                        width = 400,
+                        height = 195,
                         frame_count = 1,
                         line_length = 1,
-                        shift = util.by_pixel(32,-5),
+                        shift = util.by_pixel(50,5),
                         scale = 0.5,
                         draw_as_shadow = true
                     }
