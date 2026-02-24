@@ -8,7 +8,7 @@ data.extend{
         name = "moisture-farm",
         icon = "__planet-arrakis__/graphics/icons/moisture-farm.png",
         flags = {"placeable-neutral", "placeable-player", "player-creation"},
-        minable = {mining_time = 0.2, result = "iron-plate"},
+        minable = {mining_time = 1, result = "moisture-farm"},
         collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
         selection_box = {{-1.5, -1.5}, {1.5, 1.5}},
         max_health = 100,
@@ -28,7 +28,7 @@ data.extend{
                         height = 300,
                         frame_count = 1,
                         line_length = 1,
-                        shift = util.by_pixel(0,-25),
+                        shift = util.by_pixel(0,-23),
                         scale = 0.5
                     },
                      {
