@@ -23,22 +23,22 @@ data.extend{
                 layers = {
                     {
                         filename = "__planet-arrakis__/graphics/entity/moisture-farm/moisture-farm-1.png",
-                        priority = "high",
+                        priority = "extra-high",
                         width = 200,
-                        height = 300,
+                        height = 400,
                         frame_count = 1,
                         line_length = 1,
-                        shift = util.by_pixel(0,-23),
+                        shift = util.by_pixel(0,-48),
                         scale = 0.5
                     },
                      {
                         filename = "__planet-arrakis__/graphics/entity/moisture-farm/moisture-farm-shadow-1.png",
                         priority = "high",
-                        width = 400,
-                        height = 195,
+                        width = 500,
+                        height = 200,
                         frame_count = 1,
                         line_length = 1,
-                        shift = util.by_pixel(50,5),
+                        shift = util.by_pixel(75,7),
                         scale = 0.5,
                         draw_as_shadow = true
                     }
