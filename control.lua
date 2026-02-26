@@ -281,3 +281,17 @@ script.on_event(defines.events.on_tick, function(event)
         spawn_spice_blow(game.surfaces["arrakis"], "spice-ore", SPICE_ORE_AMOUNT)
     end
 end)
+
+script.on_event(defines.events.on_space_platform_changed_state, function(event)
+    if event.platform.state == defines.space_platform_state.on_the_path or event.platform.state == defines.space_platform_state.waiting_for_departure then
+        local platform = event.platform
+        if not platform then return end
+
+        
+        local drives = platform.surface.find_entities_filtered{name = "holtzman-drive"}
+        if table_size(drives) == 0 then return end
+
+        local schedule = platform.schedule
+        platform.space_location = schedule.records[schedule.current].station
+    end
+end)
