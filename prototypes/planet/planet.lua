@@ -30,7 +30,8 @@ data:extend(
                 ["magnetic-field"] = 25,
                 ["solar-power"] = 200,
                 pressure = 1250,
-                gravity = 10
+                gravity = 10,
+                moisture = 10
             },
         },
         {

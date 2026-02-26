@@ -1,6 +1,31 @@
 data:extend(
     {
         {
+          type = "technology",
+          name = "moisture-farm",
+          icon = "__planet-arrakis__/graphics/technology/moisture-farm.png",
+          icon_size = 64,
+          essential = false,
+          effects =
+          {
+            {
+              type = "unlock-recipe",
+              recipe = "moisture-farm"
+            }
+          },
+          prerequisites = {"concrete", "fluid-handling"},
+          unit =
+          {
+            count = 75,
+            ingredients =
+            {
+              {"automation-science-pack", 1},
+              {"logistic-science-pack", 1}
+            },
+            time = 15
+          }
+        },
+        {
             type = "technology",
             name = "planet-discovery-arrakis",
             icons = util.technology_icon_constant_planet("__planet-arrakis__/graphics/technology/arrakis.png"),
@@ -18,7 +43,7 @@ data:extend(
                 recipe = "spice-harvester"
               }
             },
-            prerequisites = {"metallurgic-science-pack", "electromagnetic-science-pack", "agricultural-science-pack"},
+            prerequisites = {"metallurgic-science-pack", "electromagnetic-science-pack", "agricultural-science-pack", "moisture-farm"},
             unit =
             {
               count = 3000,

@@ -1,3 +1,5 @@
+require("__base__/prototypes/entity/pipecovers")
+
 data.extend{
     {
         type = "recipe-category",
@@ -23,7 +25,7 @@ data.extend{
                 layers = {
                     {
                         filename = "__planet-arrakis__/graphics/entity/moisture-farm/moisture-farm-1.png",
-                        priority = "extra-high",
+                        priority = "high",
                         width = 200,
                         height = 400,
                         frame_count = 1,
@@ -50,21 +52,25 @@ data.extend{
             {
                 production_type = "output",
                 volume = 1000,
+                pipe_covers = pipecoverspictures(),
                 pipe_connections = {{ flow_direction="output", direction = defines.direction.north, position = {0, -1} }}
             },
             {
                 production_type = "output",
                 volume = 1000,
+                pipe_covers = pipecoverspictures(),
                 pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {0, 1} }}
             },
             {
                 production_type = "output",
                 volume = 1000,
+                pipe_covers = pipecoverspictures(),
                 pipe_connections = {{ flow_direction="output", direction = defines.direction.west, position = {-1, 0} }}
             },
             {
                 production_type = "output",
                 volume = 1000,
+                pipe_covers = pipecoverspictures(),
                 pipe_connections = {{ flow_direction="output", direction = defines.direction.east, position = {1, 0} }}
             }
         }
