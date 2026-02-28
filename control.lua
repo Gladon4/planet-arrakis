@@ -110,6 +110,8 @@ script.on_nth_tick(60, function()
     local worms = arrakis.find_entities_filtered { name = WORMS }
     if table_size(worms) == 0 then return end
 
+    thumpers = arrakis.find_entities_filtered{name="thumper"}
+
     for _, worm in pairs(worms) do
         for _, harvester in pairs(harvesters) do
             if distance(harvester.position, worm.position) > 100 then
@@ -119,6 +121,17 @@ script.on_nth_tick(60, function()
 
             ::next_harvester::
         end 
+
+        if table_size(thumpers) > 0 then 
+            for _, thumper in pairs(thumpers) do
+                if distance(thumper.position, worm.position) > 100 then
+                    goto next_thumper
+                end
+                worm.damage(100, game.forces.player, "physical", thumper)
+
+                ::next_thumper::
+            end
+        end
     end
 end)
 
@@ -161,6 +174,14 @@ script.on_nth_tick(600, function()
                     if table_size(cars) > 0 then 
                         for _, vehicle in pairs(cars) do
                             new_worm.damage(100, game.forces.player, "physical", vehicle)
+                        end
+                    end
+
+                    thumpers = arrakis.find_entities_filtered{name="thumper", position=chunk_position, radius=50}
+                    
+                    if table_size(thumpers) > 0 then 
+                        for _, thumper in pairs(thumpers) do
+                            new_worm.damage(100, game.forces.player, "physical", thumper)
                         end
                     end
                 end

@@ -1,0 +1,6 @@
+require("prototypes.entity.resources")
+require("prototypes.entity.enemies")
+require("prototypes.entity.spice-harvester")
+require("prototypes.entity.moisture-farm")
+require("prototypes.entity.holtzman-drive")
+require("prototypes.entity.thumper")
