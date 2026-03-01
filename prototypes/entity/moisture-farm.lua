@@ -2,10 +2,6 @@ require("__base__/prototypes/entity/pipecovers")
 
 data.extend{
     {
-        type = "recipe-category",
-        name = "moisture-recipes"
-    },
-    {
         type = "assembling-machine",
         name = "moisture-farm",
         icon = "__planet-arrakis__/graphics/icons/moisture-farm.png",
@@ -33,7 +29,7 @@ data.extend{
                         shift = util.by_pixel(0,-48),
                         scale = 0.5
                     },
-                     {
+                    {
                         filename = "__planet-arrakis__/graphics/entity/moisture-farm/moisture-farm-shadow-1.png",
                         priority = "high",
                         width = 500,

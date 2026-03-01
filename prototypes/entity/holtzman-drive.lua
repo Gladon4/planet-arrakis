@@ -2,8 +2,8 @@ data.extend({
     {
         type = "container",
         name = "holtzman-drive",
-        inventory_size = 10,
-        icon = "__base__/graphics/icons/wooden-chest.png",
+        inventory_size = 5,
+        icon = "__planet-arrakis__/graphics/icons/holtzman-engine.png",
         flags = {"placeable-neutral", "player-creation"},
         minable = {mining_time = 0.1, result = "wooden-chest"},
         max_health = 100,
@@ -21,22 +21,22 @@ data.extend({
             layers =
             {
                 {
-                filename = "__base__/graphics/entity/wooden-chest/wooden-chest.png",
+                filename = "__planet-arrakis__/graphics/entity/holtzman-engine/holtzman-engine.png",
                 priority = "extra-high",
-                width = 62,
-                height = 72,
-                shift = util.by_pixel(0.5, -2),
+                width = 200,
+                height = 200,
+                shift = util.by_pixel(0,0),
                 scale = 1
                 },
-                {
-                filename = "__base__/graphics/entity/wooden-chest/wooden-chest-shadow.png",
-                priority = "extra-high",
-                width = 104,
-                height = 40,
-                shift = util.by_pixel(10, 6.5),
-                draw_as_shadow = true,
-                scale = 1
-                }
+                -- {
+                -- filename = "__base__/graphics/entity/wooden-chest/wooden-chest-shadow.png",
+                -- priority = "extra-high",
+                -- width = 104,
+                -- height = 40,
+                -- shift = util.by_pixel(10, 6.5),
+                -- draw_as_shadow = true,
+                -- scale = 1
+                -- }
             }
         },
         -- circuit_connector = circuit_connector_definitions["chest"],

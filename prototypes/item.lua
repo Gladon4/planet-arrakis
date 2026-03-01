@@ -6,6 +6,8 @@ data:extend(
             subgroup = "arrakis-processes",
             stack_size = 20,
             icon = "__planet-arrakis__/graphics/icons/spice.png",
+            fuel_category = "spice",
+            fuel_value = "6MJ",
         },
         {
             type = "item",
@@ -26,6 +28,16 @@ data:extend(
             order = "a[items]-z[moisture-farm]",
             place_result = "moisture-farm",
             stack_size = 20
+        },
+        {
+            type = "item",
+            name = "navigation-data",
+            icon = "__planet-arrakis__/graphics/icons/data.png",
+            icon_size = 64,
+            -- subgroup = "",
+            stack_size = 1,
+            spoil_result = nil,
+            spoil_ticks = 60 * 60 * 60, -- 1 hour
         }
     }
 )

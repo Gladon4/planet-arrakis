@@ -140,5 +140,16 @@ data:extend({
         shift = {0, 0}
       }
     }
+  },
+  {
+    type = "recipe",
+    name = "navigation-data",
+    category = "navigation-data",
+    enabled = true, -- TODO add to research
+    energy_required = 10,
+    ingredients = nil,
+    results = {{ type = "item", name="navigation-data", amount = 1}},
+    icon = "__planet-arrakis__/graphics/icons/data.png",
+    icon_size = 64
   }
 })
