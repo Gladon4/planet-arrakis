@@ -1,3 +1,6 @@
+local item_sounds = require("__base__.prototypes.item_sounds")
+local item_tints = require("__base__.prototypes.item-tints")
+
 data:extend(
     {
         {
@@ -7,7 +10,7 @@ data:extend(
             stack_size = 20,
             icon = "__planet-arrakis__/graphics/icons/spice.png",
             fuel_category = "spice",
-            fuel_value = "6MJ",
+            fuel_value = "10MJ",
         },
         {
             type = "item",
@@ -38,6 +41,22 @@ data:extend(
             stack_size = 1,
             spoil_result = nil,
             spoil_ticks = 60 * 60 * 60, -- 1 hour
+        },
+        {
+            type = "tool",
+            name = "arrakis-science-pack",
+            icon = "__planet-arrakis__/graphics/icons/arrakis-science-pack.png",
+            subgroup = "science-pack",
+            -- color_hint = { text = "P" },
+            order = "z[arrakis-science-pack]",
+            inventory_move_sound = item_sounds.science_inventory_move,
+            pick_sound = item_sounds.science_inventory_pickup,
+            drop_sound = item_sounds.science_inventory_move,
+            stack_size = 200,
+            weight = 1 * kg,
+            durability = 1,
+            random_tint_color = item_tints.bluish_science,
+            default_import_location = "arrakis"
         }
     }
 )

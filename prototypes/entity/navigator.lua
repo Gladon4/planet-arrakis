@@ -108,7 +108,7 @@ data.extend({
     -- },
     crafting_categories = {"navigation-data"},
     fixed_recipe = "navigation-data", 
-    crafting_speed = 0.25,
+    crafting_speed = 1.0,
     energy_source =
     {
       type = "burner",
@@ -129,7 +129,7 @@ data.extend({
         color = {0, 0, 0, 1}
       }
     },
-    energy_usage = "1MM",
+    energy_usage = "1MW",
     module_slots = 0,
     allowed_effects = {},
     enable_logistic_control_behavior = false
