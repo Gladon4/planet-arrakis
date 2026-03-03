@@ -5,8 +5,8 @@ data.extend({
     icon = "__planet-arrakis__/graphics/icons/navigator.png",
     --subgroup = "agriculture",
     flags = {"placeable-neutral", "placeable-player", "player-creation", "not-repairable", "not-deconstructable"},
-    collision_box = {{-2.2, -2.2}, {2.2, 2.2}},
-    selection_box = {{-2.5, -2.5}, {2.5, 2.5}},
+    collision_box = {{-1.2, -2}, {1.2, 2}},
+    selection_box = {{-1.5, -2}, {1.5, 2}},
     create_ghost_on_death = false,
     max_health = 350,
     show_recipe_icon = false,
@@ -61,14 +61,14 @@ data.extend({
         animation = {
             layers = {
                 {
-                    filename = "__planet-arrakis__/graphics/entity/navigator/navigator.png",
+                    filename = "__planet-arrakis__/graphics/entity/navigator/navigator-1.png",
                     priority = "high",
                     width = 200,
-                    height = 200,
-                    frame_count = 1,
-                    line_length = 1,
-                    shift = util.by_pixel(0,0),
-                    scale = 1
+                    height = 350,
+                    frame_count = 64,
+                    line_length = 8,
+                    shift = util.by_pixel(0,-25),
+                    scale = 0.5
                 },
                 -- {
                 --     filename = "__planet-arrakis__/graphics/entity/moisture-farm/moisture-farm-shadow-1.png",
