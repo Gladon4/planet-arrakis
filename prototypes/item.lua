@@ -34,6 +34,16 @@ data:extend(
         },
         {
             type = "item",
+            name = "navigator",
+            icon = "__planet-arrakis__/graphics/icons/navigator.png",
+            icon_size = 64,
+            subgroup = "extraction-machine",
+            order = "a[items]-z[moisture-farm]",
+            place_result = "moisture-farm",
+            stack_size = 20
+        },
+        {
+            type = "item",
             name = "navigation-data",
             icon = "__planet-arrakis__/graphics/icons/data.png",
             icon_size = 64,
@@ -57,6 +67,28 @@ data:extend(
             durability = 1,
             random_tint_color = item_tints.bluish_science,
             default_import_location = "arrakis"
-        }
+        },
+        {
+            type = "item",
+            name = "biter-brain",
+            icon = "__planet-arrakis__/graphics/icons/biter-brain.png",
+            icon_size = 64,
+            -- subgroup = "",
+            stack_size = 5,
+            weight = 100,
+            --spoil_result = nil,
+            --spoil_ticks = 60 * 60 * 60, -- 1 hour
+        },
+        {
+            type = "item",
+            name = "pentapod-brain",
+            icon = "__planet-arrakis__/graphics/icons/pentapod-brain.png",
+            icon_size = 64,
+            -- subgroup = "",
+            stack_size = 5,
+            weight = 100,
+            --spoil_result = nil,
+            --spoil_ticks = 60 * 60 * 60, -- 1 hour
+        },
     }
 )

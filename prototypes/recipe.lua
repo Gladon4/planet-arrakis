@@ -1,23 +1,3 @@
--- TODO: maybe make the available recipe dependent on a moisture surface condition 
--- and have x recipes (eg dry air, moist air, wet air)
-
-make_moisture_recipe_icon = function(planet_grapic)
-  return {
-       {
-        icon = planet_grapic,
-        icon_size = 64,
-        scale = 0.6,
-        shift = {-12, -12}
-      },
-      {
-        icon = "__base__/graphics/icons/fluid/water.png",
-        icon_size = 64,
-        scale = 0.7,
-        shift = {5, 5}
-      }
-    }
-end
-
 data:extend({
   {
     type = "recipe",
@@ -145,11 +125,76 @@ data:extend({
     type = "recipe",
     name = "navigation-data",
     category = "navigation-data",
-    enabled = true, -- TODO add to research
+    enabled = true,
     energy_required = 30,
     ingredients = nil,
     results = {{ type = "item", name="navigation-data", amount = 1}},
     icon = "__planet-arrakis__/graphics/icons/data.png",
     icon_size = 64
-  }
+  },
+  {
+    type = "recipe",
+    name = "biter-brain",
+    category = "organic",
+    enabled = false,
+    energy_required = 5,
+    ingredients = {
+      {type = "item", name = "biter-egg", amount=1},
+      {type = "fluid", name = "water", amount = 50}, --TODO Water of life maybe?
+      {type = "item", name = "nutrients", amount = 20}
+    },
+    results = {{ type = "item", name="biter-brain", probability = 0.05, amount = 1}},
+    icon = "__planet-arrakis__/graphics/icons/biter-brain.png",
+    icon_size = 64
+  },
+  {
+    type = "recipe",
+    name = "pentapod-brain",
+    category = "organic",
+    enabled = false,
+    energy_required = 5,
+    ingredients = {
+      {type = "item", name = "pentapod-egg", amount=1},
+      {type = "fluid", name = "water", amount = 50}, --TODO Water of life maybe?
+      {type = "item", name = "nutrients", amount = 20}
+    },
+    results = {{ type = "item", name="pentapod-brain", probability = 0.1, amount = 1}},
+    icon = "__planet-arrakis__/graphics/icons/pentapod-brain.png",
+    icon_size = 64
+  },
+  {
+    type = "recipe",
+    name = "biter-navigator",
+    category = "crafting-with-fluid",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+      { type = "item", name = "steel-plate",     amount = 50 },
+      { type = "item", name = "carbon-fiber",  amount = 100 },
+      { type = "item", name = "biter-brain", amount = 1},
+      { type = "item", name = "spice", amount = 100},
+      { type = "fluid", name = "water", amount = 100}
+    },
+    results = {
+      { type = "item", name = "navigator", amount = 1},
+    }
+  },
+
+  {
+    type = "recipe",
+    name = "pentapod-navigator",
+    category = "crafting-with-fluid",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+      { type = "item", name = "steel-plate",     amount = 50 },
+      { type = "item", name = "carbon-fiber",  amount = 100 },
+      { type = "item", name = "pentapod-brain", amount = 1},
+      { type = "item", name = "spice", amount = 100},
+      { type = "fluid", name = "water", amount = 100}
+    },
+    results = {
+      { type = "item", name = "navigator", amount = 1},
+    }
+  },
 })
