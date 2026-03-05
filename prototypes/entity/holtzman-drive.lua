@@ -1,12 +1,37 @@
+-- TODO find a way to change Temperature: X°C to Charge: X%
+-- no idea if that is even possible
+-- TODO only one per ship
+
 data.extend({
     {
-        type = "container",
+        type = "reactor",
         name = "holtzman-drive",
-        inventory_size = 5,
+        consumption = "100MW",
+        energy_source =
+        {
+            type = "burner",
+            fuel_categories = {"navigation-data"},
+            effectivity = 1,
+            fuel_inventory_size = 1,
+            burnt_inventory_size = 0,
+            render_no_power_icon = false,
+            -- light_flicker =
+            -- {
+                -- color = {0,0,0},
+                -- minimum_intensity = 0.7,
+                -- maximum_intensity = 0.95
+            -- }
+        },
+        heat_buffer = {
+            default_temperature = 0,
+            max_temperature = 100,
+            specific_heat = "1MJ",
+            max_transfer = "1GW",
+        },
         icon = "__planet-arrakis__/graphics/icons/holtzman-engine.png",
         flags = {"placeable-neutral", "player-creation"},
-        minable = {mining_time = 0.1, result = "wooden-chest"},
-        max_health = 100,
+        minable = {mining_time = 0.1, result = "iron-plate"},
+        max_health = 1000,
         -- corpse = "wooden-chest-remnants",
         -- dying_explosion = "wooden-chest-explosion",
         collision_box = {{-3.4, -3.4}, {3.4, 3.4}},

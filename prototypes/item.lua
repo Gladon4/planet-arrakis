@@ -51,6 +51,8 @@ data:extend(
             stack_size = 1,
             spoil_result = nil,
             spoil_ticks = 60 * 60 * 60, -- 1 hour
+            fuel_category = "navigation-data",
+            fuel_value = "25MJ",
         },
         {
             type = "tool",
