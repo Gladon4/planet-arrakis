@@ -309,19 +309,19 @@ script.on_event(defines.events.on_space_platform_changed_state, function(event)
         if not platform then return end
 
         local conneciton_length = platform.space_connection.length
-        local charge_required = (conneciton_length / 15000) * 25
+        local charge_required = (conneciton_length / 15000) * 25 * 1000000000
         log("length:" .. conneciton_length .. ", charge required:" .. charge_required)
 
         
         local drives = platform.surface.find_entities_filtered{name = "holtzman-drive"}
         if table_size(drives) == 0 then return end
-
-        local current_charge = drives[1].temperature
+ 
+        local current_charge = drives[1].energy
         log("Charge:" .. current_charge)
 
         if (current_charge + 0.1) < charge_required then return end
 
-        drives[1].temperature = drives[1].temperature - charge_required
+        drives[1].energy = drives[1].energy - charge_required
 
         local schedule = platform.schedule
         platform.space_location = schedule.records[schedule.current].station
