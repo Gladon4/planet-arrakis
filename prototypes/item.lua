@@ -43,18 +43,6 @@ data:extend(
             stack_size = 20
         },
         {
-            type = "item",
-            name = "navigation-data",
-            icon = "__planet-arrakis__/graphics/icons/data.png",
-            icon_size = 64,
-            -- subgroup = "",
-            stack_size = 1,
-            spoil_result = nil,
-            spoil_ticks = 60 * 60 * 60, -- 1 hour
-            fuel_category = "navigation-data",
-            fuel_value = "25MJ",
-        },
-        {
             type = "tool",
             name = "arrakis-science-pack",
             icon = "__planet-arrakis__/graphics/icons/arrakis-science-pack.png",

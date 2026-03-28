@@ -68,7 +68,8 @@ data.extend({
                     frame_count = 64,
                     line_length = 8,
                     shift = util.by_pixel(0,-25),
-                    scale = 0.5
+                    scale = 0.5,
+                    animation_speed = 0.5
                 },
                 -- {
                 --     filename = "__planet-arrakis__/graphics/entity/moisture-farm/moisture-farm-shadow-1.png",
@@ -106,8 +107,8 @@ data.extend({
     --     {sound = {variations = sound_variations("__space-age__/sound/entity/spawner/spawner-respirator-pull", 3, 0.3)}, frame = 17, audible_distance_modifier = 0.6},
     --   },
     -- },
-    crafting_categories = {"navigation-data"},
-    fixed_recipe = "navigation-data", 
+    crafting_categories = {"navigator-recipe"},
+    fixed_recipe = "navigator-recipe",
     crafting_speed = 1.0,
     energy_source =
     {

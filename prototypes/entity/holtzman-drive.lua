@@ -26,7 +26,7 @@ function accumulator_charge()
   {
     layers =
     {
-      engine_picture(72),
+    --   engine_picture(72),
       {
         stripes =
         {{
@@ -45,7 +45,8 @@ function accumulator_charge()
         height = 200,
         draw_as_glow = false,
         shift = util.by_pixel(0, 0),
-        scale = 0.75
+        scale = 1,
+        animation_speed = 0.5,
       }
     }
   }

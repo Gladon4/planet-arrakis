@@ -5,6 +5,6 @@ data.extend({
     },
     {
         type = "recipe-category",
-        name = "navigation-data"
+        name = "navigator-recipe"
     },
 })

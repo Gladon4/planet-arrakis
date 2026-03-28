@@ -123,12 +123,12 @@ data:extend({
   },
   {
     type = "recipe",
-    name = "navigation-data",
-    category = "navigation-data",
+    name = "navigator-recipe",
+    category = "navigator-recipe",
     enabled = true,
     energy_required = 30,
     ingredients = nil,
-    results = {{ type = "item", name="navigation-data", amount = 1}},
+    results = nil,
     icon = "__planet-arrakis__/graphics/icons/data.png",
     icon_size = 64
   },
