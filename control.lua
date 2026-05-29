@@ -315,6 +315,9 @@ script.on_event(defines.events.on_space_platform_changed_state, function(event)
         
         local drives = platform.surface.find_entities_filtered{name = "holtzman-drive"}
         if table_size(drives) == 0 then return end
+
+        local navigators = platform.surface.find_entities_filtered{name = "navigator"}
+        if table_size(navigators) == 0 then return end
  
         local current_charge = drives[1].energy
         log("Charge:" .. current_charge)

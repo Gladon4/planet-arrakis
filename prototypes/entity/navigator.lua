@@ -48,14 +48,6 @@ data.extend({
         percent = 70
       }
     },
-    surface_conditions =
-    {
-      {
-        property = "pressure",
-        min = 0,
-        max = 0
-      }
-    },
     -- fast_replaceable_group = "captive-biter-spawner",
     graphics_set = {
         animation = {
@@ -108,7 +100,6 @@ data.extend({
     --   },
     -- },
     crafting_categories = {"navigator-recipe"},
-    fixed_recipe = "navigator-recipe",
     crafting_speed = 1.0,
     energy_source =
     {

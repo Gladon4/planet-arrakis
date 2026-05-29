@@ -123,14 +123,41 @@ data:extend({
   },
   {
     type = "recipe",
-    name = "navigator-recipe",
+    name = "navigation-recipe",
     category = "navigator-recipe",
     enabled = true,
     energy_required = 30,
     ingredients = nil,
     results = nil,
     icon = "__planet-arrakis__/graphics/icons/data.png",
-    icon_size = 64
+    icon_size = 64,
+    surface_conditions =
+    {
+      {
+        property = "pressure",
+        min = 0,
+        max = 0
+      }
+    },
+  },
+  {
+    type = "recipe",
+    name = "arrakis-science-pack-recipe",
+    category = "navigator-recipe",
+    enabled = true,
+    energy_required = 120,
+    ingredients = {{type="item", name="spice", amount=5}},
+    results = {{type="item", name="arrakis-science-pack", amount=1}},
+    icon = "__planet-arrakis__/graphics/icons/arrakis-science-pack.png",
+    icon_size = 64,
+    surface_conditions =
+    {
+      {
+        property = "pressure",
+        min = 1250,
+        max = 1250
+      }
+    },
   },
   {
     type = "recipe",

@@ -8,7 +8,7 @@ function engine_picture(repeat_count)
   {
     layers = {                
         {
-        filename = "__planet-arrakis__/graphics/entity/holtzman-engine/holtzman-engine.png",
+        filename = "__planet-arrakis__/graphics/entity/holtzman-engine/holtzman-base.png",
         priority = "high",
         width = 200,
         height = 200,
