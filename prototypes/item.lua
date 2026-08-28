@@ -37,9 +37,9 @@ data:extend(
             name = "navigator",
             icon = "__planet-arrakis__/graphics/icons/navigator.png",
             icon_size = 64,
-            subgroup = "extraction-machine",
-            order = "a[items]-z[moisture-farm]",
-            place_result = "moisture-farm",
+            subgroup = "planet-arrakis-space",
+            order = "a[items]-z[navigator]",
+            place_result = "navigator",
             stack_size = 20
         },
         {
@@ -63,22 +63,58 @@ data:extend(
             name = "biter-brain",
             icon = "__planet-arrakis__/graphics/icons/biter-brain.png",
             icon_size = 64,
-            -- subgroup = "",
+            subgroup = "arrakis-intermediate-products",
             stack_size = 5,
             weight = 100,
-            --spoil_result = nil,
-            --spoil_ticks = 60 * 60 * 60, -- 1 hour
         },
         {
             type = "item",
             name = "pentapod-brain",
             icon = "__planet-arrakis__/graphics/icons/pentapod-brain.png",
             icon_size = 64,
-            -- subgroup = "",
+            subgroup = "arrakis-intermediate-products",
             stack_size = 5,
             weight = 100,
-            --spoil_result = nil,
-            --spoil_ticks = 60 * 60 * 60, -- 1 hour
+        },
+        {
+            type = "item",
+            name = "thumper",
+            icon = "__planet-arrakis__/graphics/icons/thumper.png",
+            icon_size = 64,
+            subgroup = "turret",
+            order = "c[items]-z[thumper]",
+            place_result = "thumper",
+            stack_size = 10
+        },
+        {
+            type = "item",
+            name = "holtzman-drive",
+            icon = "__planet-arrakis__/graphics/icons/holtzman-engine.png",
+            icon_size = 64,
+            subgroup = "planet-arrakis-space",
+            order = "b[items]-a[holtzman-drive]",
+            place_result = "holtzman-drive",
+            stack_size = 10
+        },
+        {
+            type = "item",
+            name = "trout-bait",
+            icon = "__planet-arrakis__/graphics/placeholder.png",
+            icon_size = 64,
+            subgroup = "planet-arrakis-production",
+            order = "a[items]-z[trout-bait]",
+            place_result = "trout-bait",
+            stack_size = 10
+        },
+        {
+            type = "item",
+            name = "worm-growth-area",
+            icon = "__planet-arrakis__/graphics/placeholder.png",
+            icon_size = 64,
+            subgroup = "planet-arrakis-production",
+            order = "a[items]-z[worm-growth-area]",
+            place_result = "worm-growth-area",
+            stack_size = 10
         },
     }
 )

@@ -224,4 +224,56 @@ data:extend({
       { type = "item", name = "navigator", amount = 1},
     }
   },
+  {
+    type = "recipe",
+    name = "thumper",
+    category = "crafting",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+      { type = "item", name = "iron-plate", amount = 1 }
+    },
+    results = {
+      { type = "item", name = "thumper", amount = 1 },
+    }
+  },
+  {
+    type = "recipe",
+    name = "holtzman-drive",
+    category = "crafting",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+      { type = "item", name = "iron-plate", amount = 1 }
+    },
+    results = {
+      { type = "item", name = "holtzman-drive", amount = 1 },
+    }
+  },
+  {
+    type = "recipe",
+    name = "trout-bait",
+    category = "crafting",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+      { type = "item", name = "iron-plate", amount = 1 }
+    },
+    results = {
+      { type = "item", name = "trout-bait", amount = 1 },
+    }
+  },
+  {
+    type = "recipe",
+    name = "worm-growth-area",
+    category = "crafting",
+    enabled = false,
+    energy_required = 1,
+    ingredients = {
+      { type = "item", name = "iron-plate", amount = 1 }
+    },
+    results = {
+      { type = "item", name = "worm-growth-area", amount = 1 },
+    }
+  },
 })

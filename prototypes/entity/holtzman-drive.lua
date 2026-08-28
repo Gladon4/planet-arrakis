@@ -1,5 +1,3 @@
--- TODO find a way to change Temperature: X°C to Charge: X%
--- no idea if that is even possible
 -- TODO only one per ship
 
 function engine_picture(repeat_count)

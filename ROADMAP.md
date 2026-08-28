@@ -29,20 +29,22 @@ To travel faster than light you not only need to make use of the holtzman effect
 
 ### New Buildings / Structures / Items
 To make use of all that Arrakis has to offer, there are going to be some new buildings, structures and items. Among those are:  
-- Moisture Farm
+- [x] Moisture Farm
   - It collects small amounts of water from the air
-- Harvester
+- [x] Harvester
   - The harvester mines the spice from the sand
   - It can escape from worms
-- Capturing Spice Trout
+- [ ] Capturing Spice Trout
   - Using water in the desert you can attract sand trout
   - If captured and provided with water, they gather into a new sandworm
-- Captured Young Sand Worm
+- [ ] Captured Young Sand Worm
   - Capturing and holding a young sandworm to harvest the water of life from it.
-- Shield Wall
+- [ ] Shield Wall
   - Projectors to create a shield wall, to be safe from the sand storms
-- Spice Melange
-- Melange Science
+- [x] Spice Melange
+  - Resource
+  - Item
+- [/] Melange Science
   - A new science pack used to research powerful and expensive technologies
   - Lazeguns (Laser turrets / equipment Mk2)
   - Holtzman Shields (Personal Shields Mk3)
