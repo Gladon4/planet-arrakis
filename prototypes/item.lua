@@ -100,7 +100,7 @@ data:extend(
             type = "item",
             name = "trout-bait",
             icon = "__planet-arrakis__/graphics/placeholder.png",
-            icon_size = 64,
+            icon_size = 200,
             subgroup = "planet-arrakis-production",
             order = "a[items]-z[trout-bait]",
             place_result = "trout-bait",
@@ -108,9 +108,51 @@ data:extend(
         },
         {
             type = "item",
+            name = "trout",
+            icon = "__planet-arrakis__/graphics/placeholder.png",
+            icon_size = 200,
+            subgroup = "planet-arrakis-production",
+            order = "a[items]-z[trout]",
+            stack_size = 50
+        },
+        {
+            type = "item",
+            name = "sand-worm-infant",
+            icon = "__planet-arrakis__/graphics/placeholder.png",
+            icon_size = 200,
+            subgroup = "planet-arrakis-production",
+            order = "a[items]-z[sand-worm-infant]",
+            stack_size = 5
+        },
+        {
+            type = "item",
+            name = "spice-blow-chamber",
+            icon = "__planet-arrakis__/graphics/placeholder.png",
+            icon_size = 200,
+            subgroup = "planet-arrakis-production",
+            order = "a[items]-z[spice-blow-chamber]",
+            stack_size = 1,
+            spoil_ticks=60*30 + 5,
+            spoil_to_trigger_result = 
+            {
+                items_per_trigger = 1,
+                trigger =
+                {
+                    type = "direct",
+                    action_delivery =
+                    {
+                        type = "projectile",
+                        projectile = "explosive-rocket",
+                        starting_speed = 0
+                    }
+                },
+            },
+        },
+        {
+            type = "item",
             name = "worm-growth-area",
             icon = "__planet-arrakis__/graphics/placeholder.png",
-            icon_size = 64,
+            icon_size = 200,
             subgroup = "planet-arrakis-production",
             order = "a[items]-z[worm-growth-area]",
             place_result = "worm-growth-area",

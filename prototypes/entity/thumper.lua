@@ -6,7 +6,7 @@ data:extend({
     icon_size = 64,
 
     flags = {"placeable-neutral", "player-creation"},
-    minable = {mining_time = 0.2, result = "iron-plate"},
+    minable = {mining_time = 0.2, result = "thumper"},
 
     max_health = 10,
 

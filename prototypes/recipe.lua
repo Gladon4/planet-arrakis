@@ -254,7 +254,7 @@ data:extend({
     type = "recipe",
     name = "trout-bait",
     category = "crafting",
-    enabled = false,
+    enabled = true,
     energy_required = 1,
     ingredients = {
       { type = "item", name = "iron-plate", amount = 1 }
@@ -267,7 +267,7 @@ data:extend({
     type = "recipe",
     name = "worm-growth-area",
     category = "crafting",
-    enabled = false,
+    enabled = true,
     energy_required = 1,
     ingredients = {
       { type = "item", name = "iron-plate", amount = 1 }
@@ -275,5 +275,70 @@ data:extend({
     results = {
       { type = "item", name = "worm-growth-area", amount = 1 },
     }
+  },
+  {
+    type = "recipe",
+    name = "trout",
+    category = "trout-bait-recipes",
+    enabled = true,
+    energy_required = 60,
+    ingredients = {
+      {type = "fluid", name = "water", amount = 300}
+    },
+    results = {
+      {type = "item", name = "trout", amount = 1}
+    },
+    surface_conditions = {
+      {
+        property = "pressure",
+        min = 1250,
+        max = 1250
+      }
+    },
+  },
+  {
+    type = "recipe",
+    name = "long-growth",
+    category = "worm-growth-recipes",
+    enabled = true,
+    energy_required = 30,
+    ingredients = {
+      {type = "fluid", name = "water", amount = 50},
+      {type = "item", name = "trout", amount = 1}
+    },
+    results = {
+      {type = "item", name = "spice-blow-chamber", amount = 1}
+    },
+    surface_conditions = {
+      {
+        property = "pressure",
+        min = 1250,
+        max = 1250
+      }
+    },
+    icon = "__planet-arrakis__/graphics/placeholder.png",
+  },
+  {
+    type = "recipe",
+    name = "small-growth",
+    category = "worm-growth-recipes",
+    enabled = true,
+    energy_required = 10,
+    ingredients = {
+      {type = "fluid", name = "water", amount = 20},
+      {type = "item", name = "trout", amount = 1}
+    },
+    results = {
+      {type = "item", name = "sand-worm-infant", amount = 1},
+      {type = "item", name = "spice", amount = 10}
+    },
+    surface_conditions = {
+      {
+        property = "pressure",
+        min = 1250,
+        max = 1250
+      }
+    },
+    icon = "__planet-arrakis__/graphics/placeholder.png",
   },
 })

@@ -1,3 +1,5 @@
+require("__base__/prototypes/entity/pipecovers")
+
 data:extend({
   {
     type = "assembling-machine",
@@ -20,27 +22,24 @@ data:extend({
           {
             filename = "__planet-arrakis__/graphics/placeholder.png",
             priority = "high",
-            width = 32,
-            height = 32,
+            width = 200,
+            height = 200,
             frame_count = 1,
             line_length = 1,
-            scale = 1,
-            shift = util.by_pixel(0, 8)
-          },
-          {
-            filename = "__planet-arrakis__/graphics/placeholder.png",
-            priority = "high",
-            width = 32,
-            height = 32,
-            frame_count = 1,
-            line_length = 1,
-            scale = 0.85,
-            shift = {0.47, -0.19},
-            draw_as_shadow = true
+            scale = 0.5,
+            -- shift = util.by_pixel(0, 8)
           }
         }
       }
     },
-    impact_category = "metal"
+    impact_category = "metal",
+    fluid_boxes = {
+          {
+              production_type = "input",
+              volume = 1000,
+              pipe_covers = pipecoverspictures(),
+              pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {0, -1} }}
+          }
+      }
   }
 })
